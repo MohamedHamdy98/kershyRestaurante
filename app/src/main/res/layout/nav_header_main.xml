@@ -36,7 +36,7 @@
         android:textStyle="bold"
         android:textAllCaps="false"
         android:gravity="center"
-        android:text="user_name"
+        android:text="Restaurant Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
