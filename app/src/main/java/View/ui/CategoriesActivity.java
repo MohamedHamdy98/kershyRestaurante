@@ -43,6 +43,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 R.id.nav_orders, R.id.nav_burger, R.id.nav_sweet,R.id.nav_drink)
                 .setDrawerLayout(drawer)
                 .build();
+        navigationView.setItemIconTintList(null);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
