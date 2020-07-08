@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="categories">
+        <menu>
+            <item
+                android:id="@+id/nav_burger"
+                android:icon="@drawable/ic_burger"
+                android:title="burger" />
+            <item
+                android:id="@+id/nav_sweet"
+                android:icon="@drawable/ic_donut"
+                android:title="sweet" />
+            <item
+                android:id="@+id/nav_drink"
+                android:icon="@drawable/ic_cola"
+                android:title="drink" />
+        </menu>
+    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_slideshow" />
+    </group>
+</menu>
