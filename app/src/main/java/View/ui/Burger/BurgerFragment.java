@@ -188,7 +188,7 @@ public class BurgerFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == requestCode && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-
+            imageViewCategoryBurger.setImageURI(imageUri);
         }
     }
 
