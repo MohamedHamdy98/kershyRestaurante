@@ -1,27 +1,21 @@
 package Model;
 
 public class ModelBurger {
-    private String name_burger;
+    public String name_burger;
     private String description_burger;
     private String price_burger;
     private String totalPrice_burger;
-    private int Image_burger;
+    private String Image_burger;
     private boolean isShrink = true;
 
-    public ModelBurger(String name_burger, String description_burger, String price_burger, int image_burger) {
+    public ModelBurger(String name_burger, String description_burger, String price_burger, String image_burger) {
         this.name_burger = name_burger;
         this.description_burger = description_burger;
         this.price_burger = price_burger;
         Image_burger = image_burger;
     }
 
-    public ModelBurger(String name_burger, String description_burger, String price_burger, String totalPrice_burger, int image_burger) {
-        this.name_burger = name_burger;
-        this.description_burger = description_burger;
-        this.price_burger = price_burger;
-        this.totalPrice_burger = totalPrice_burger;
-        Image_burger = image_burger;
-    }
+
 
     public ModelBurger() {
     }
@@ -58,11 +52,11 @@ public class ModelBurger {
         this.description_burger = description_burger;
     }
 
-    public int getImage_burger() {
+    public String getImage_burger() {
         return Image_burger;
     }
 
-    public void setImage_burger(int image_burger) {
+    public void setImage_burger(String image_burger) {
         Image_burger = image_burger;
     }
 
