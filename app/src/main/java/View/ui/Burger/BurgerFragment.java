@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.testeverythingtwo.R;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.Continuation;
@@ -77,6 +78,7 @@ public class BurgerFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_burger, container, false);
         ButterKnife.bind(this, root);
         onClick();
+        //getdata();
         return root;
     }
 
@@ -106,6 +108,11 @@ public class BurgerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setFirebase();
+                if (uploadTask != null && uploadTask.isInProgress()) {
+                    Toast.makeText(getContext(), "Uploading...", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadImage();
+                }
             }
         });
         imageViewCategoryBurger.setOnClickListener(new View.OnClickListener() {
@@ -181,11 +188,28 @@ public class BurgerFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == requestCode && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-            if (uploadTask != null && uploadTask.isInProgress()) {
-                Toast.makeText(getContext(), "Uploading...", Toast.LENGTH_SHORT).show();
-            } else {
-                uploadImage();
-            }
+
         }
+    }
+
+    private void getdata(){
+        databaseReference = database.getReference("M").child("Burger");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    ModelBurger modelBurger = snapshot.getValue(ModelBurger.class);
+                    if (modelBurger.getImage_burger().equals("default")){
+                        imageViewCategoryBurger.setImageResource(R.drawable.ic_photo);
+                    } else {
+                        Glide.with(getActivity()).load(modelBurger.getImage_burger()).into(imageViewCategoryBurger);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
