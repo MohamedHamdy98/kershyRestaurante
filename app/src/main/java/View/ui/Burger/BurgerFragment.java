@@ -68,7 +68,6 @@ public class BurgerFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference mStorageRef = storage.getReference();
-    ArrayList<ModelBurger> modelBurgerArrayList = new ArrayList<>();
     Uri imageUri;
     private StorageTask uploadTask;
 
@@ -78,7 +77,6 @@ public class BurgerFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_burger, container, false);
         ButterKnife.bind(this, root);
         onClick();
-        //getdata();
         return root;
     }
 
@@ -87,17 +85,12 @@ public class BurgerFragment extends Fragment {
         String name = editTextNameCategoryBurger.getText().toString();
         String description = editTextDescriptionCategoryBurger.getText().toString();
         String price = editTextPriceCategoryBurger.getText().toString();
-//        modelBurger.setName_burger(name);
-//        modelBurger.setDescription_burger(description);
-//        modelBurger.setPrice_burger(price);
-//        modelBurger.setImage_burger("default");
-//        modelBurgerArrayList.add(modelBurger);
-        HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put("name_burger",name);
-        hashMap.put("description_burger",description);
-        hashMap.put("price_burger",price);
-        hashMap.put("image_burger","default");
-        hashMap.put("shrink",modelBurger.isShrink());
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("name_burger", name);
+        hashMap.put("description_burger", description);
+        hashMap.put("price_burger", price);
+        hashMap.put("image_burger", "default");
+        hashMap.put("shrink", modelBurger.isShrink());
         databaseReference = database.getReference("M").child("Burger").child(name);
         databaseReference.setValue(hashMap);
 
@@ -115,10 +108,20 @@ public class BurgerFragment extends Fragment {
                 }
             }
         });
+
         imageViewCategoryBurger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openImage();
+            }
+        });
+
+        buttonDeleteCategoryBurger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String deleteName = editTextDeleteNameCategoryBurger.getText().toString();
+                databaseReference = database.getReference("M").child("Burger");
+                databaseReference.child(deleteName).removeValue();
             }
         });
     }
@@ -142,42 +145,45 @@ public class BurgerFragment extends Fragment {
         progressDialog.show();
         if (imageUri != null) {
             final StorageReference filereference = mStorageRef.
+                    child(editTextNameCategoryBurger.getText().toString()).
                     child(String.valueOf(System.currentTimeMillis())
                             + "." + getFileExtention(imageUri));
             uploadTask = filereference.putFile(imageUri);
-            uploadTask.continueWithTask(new Continuation() {
-                @Override
-                public Object then(@NonNull Task task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
+            if (imageUri != null) {
+                uploadTask.continueWithTask(new Continuation() {
+                    @Override
+                    public Object then(@NonNull Task task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
+                        return filereference.getDownloadUrl();
                     }
-                    return filereference.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener() {
-                @Override
-                public void onComplete(@NonNull Task task) {
-                    if (task.isSuccessful()) {
-                        Uri downloadUri = (Uri) task.getResult();
-                        final String mUri = downloadUri.toString();
-                        databaseReference = database.getReference("M").child("Burger")
-                                .child(editTextNameCategoryBurger.getText().toString());
+                }).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()) {
+                            Uri downloadUri = (Uri) task.getResult();
+                            final String mUri = downloadUri.toString();
+                            databaseReference = database.getReference("M").child("Burger")
+                                    .child(editTextNameCategoryBurger.getText().toString());
 //                        databaseReference.child("M").child("Burger").push().getKey();
-                        HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("image_burger", mUri);
-                        databaseReference.updateChildren(hashMap);
-                        progressDialog.dismiss();
-                    } else {
-                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("image_burger", mUri);
+                            databaseReference.updateChildren(hashMap);
+                            progressDialog.dismiss();
+                        } else {
+                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
-            });
+                });
+            }
         } else {
             Toast.makeText(getContext(), "Please! Choose image!", Toast.LENGTH_SHORT).show();
         }
@@ -188,24 +194,25 @@ public class BurgerFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == requestCode && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-            imageViewCategoryBurger.setImageURI(imageUri);
+            Picasso.get().load(imageUri).into(imageViewCategoryBurger);
         }
     }
 
-    private void getdata(){
+    private void getdata() {
         databaseReference = database.getReference("M").child("Burger");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     ModelBurger modelBurger = snapshot.getValue(ModelBurger.class);
-                    if (modelBurger.getImage_burger().equals("default")){
+                    if (modelBurger.getImage_burger().equals("default")) {
                         imageViewCategoryBurger.setImageResource(R.drawable.ic_photo);
                     } else {
                         Glide.with(getActivity()).load(modelBurger.getImage_burger()).into(imageViewCategoryBurger);
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

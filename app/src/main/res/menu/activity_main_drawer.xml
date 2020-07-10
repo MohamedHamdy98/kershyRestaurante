@@ -2,6 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
+    <item android:title="Restaurant_information">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_man"
+                android:title="Restaurant Profile" />
+        </menu>
+    </item>
     <item android:title="Categories">
         <menu>
             <item

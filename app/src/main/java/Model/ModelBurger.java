@@ -1,7 +1,7 @@
 package Model;
 
 public class ModelBurger {
-    public String name_burger;
+    private String name_burger;
     private String description_burger;
     private String price_burger;
     private String totalPrice_burger;

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(SPLASH_SCREEN);
-                    Intent i = new Intent(MainActivity.this, CategoriesActivity.class);
+                    Intent i = new Intent(MainActivity.this, LogInActivity.class);
                     startActivity(i);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     finish();
