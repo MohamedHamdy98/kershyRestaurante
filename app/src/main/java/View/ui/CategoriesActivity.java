@@ -6,12 +6,21 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.testeverythingtwo.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -22,10 +31,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import Model.User;
+
 public class CategoriesActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference;
+    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    ImageView imageView_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +54,29 @@ public class CategoriesActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
+        databaseReference = database.getReference("RestaurantInformation").child(userId);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                String name = dataSnapshot.child("userName").getValue(String.class);
+                TextView userName = navigationView.getHeaderView(0).findViewById(R.id.textView_userName);
+                userName.setText(name);
+                imageView_user = navigationView.getHeaderView(0).findViewById(R.id.imageView_user);
+                if (user.getImageURL().equals("default")) {
+                    imageView_user.setImageResource(R.drawable.ic_man);
+                } else {
+                    Glide.with(CategoriesActivity.this).load(user.getImageURL()).into(imageView_user);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(CategoriesActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_profile,
