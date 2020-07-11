@@ -78,7 +78,7 @@ public class OffersFragment extends Fragment {
         hashMap.put("new_price_offer", NewPrice);
         hashMap.put("old_price_offer", oldPrice);
         hashMap.put("image_offer", "default");
-        databaseReference = database.getReference("M").child("Offers").child(name);
+        databaseReference = database.getReference("Menu").child("Offers").child(name);
         databaseReference.setValue(hashMap);
 
     }
@@ -107,7 +107,7 @@ public class OffersFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String deleteName = editTextDeleteNameCategoryOffer.getText().toString();
-                databaseReference = database.getReference("M").child("Offers");
+                databaseReference = database.getReference("Menu").child("Offers");
                 databaseReference.child(deleteName).removeValue();
             }
         });
@@ -151,7 +151,7 @@ public class OffersFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Uri downloadUri = (Uri) task.getResult();
                             final String mUri = downloadUri.toString();
-                            databaseReference = database.getReference("M").child("Offers")
+                            databaseReference = database.getReference("Menu").child("Offers")
                                     .child(editTextNameCategoryOffer.getText().toString());
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("image_offer", mUri);

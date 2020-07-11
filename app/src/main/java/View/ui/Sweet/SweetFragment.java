@@ -42,7 +42,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class SweetFragment extends Fragment {
 
-
     @BindView(R.id.imageView_category_sweet)
     ImageView imageViewCategorySweet;
     @BindView(R.id.editText_name_category_sweet)
@@ -83,7 +82,7 @@ public class SweetFragment extends Fragment {
         hashMap.put("price_sweet", price);
         hashMap.put("image_sweet", "default");
         hashMap.put("shrink", modelSweet.isShrink());
-        databaseReference = database.getReference("M").child("Sweet").child(name);
+        databaseReference = database.getReference("Menu").child("Sweet").child(name);
         databaseReference.setValue(hashMap);
     }
 
@@ -111,7 +110,7 @@ public class SweetFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String deleteName = editTextDeleteNameCategorySweet.getText().toString();
-                databaseReference = database.getReference("M").child("Sweet");
+                databaseReference = database.getReference("Menu").child("Sweet");
                 databaseReference.child(deleteName).removeValue();
             }
         });
@@ -155,7 +154,7 @@ public class SweetFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Uri downloadUri = (Uri) task.getResult();
                             final String mUri = downloadUri.toString();
-                            databaseReference = database.getReference("M").child("Sweet")
+                            databaseReference = database.getReference("Menu").child("Sweet")
                                     .child(editTextNameCategorySweet.getText().toString());
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("image_sweet", mUri);

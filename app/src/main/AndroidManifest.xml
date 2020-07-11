@@ -26,7 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name="View.ui.LogInActivity"></activity>
+        <activity android:name="View.ui.UserDetailsActivity"></activity>
+        <activity android:name="View.ui.LogInActivity" />
         <activity android:name="View.ui.SignUpActivity" />
         <activity
             android:name="View.ui.CategoriesActivity"

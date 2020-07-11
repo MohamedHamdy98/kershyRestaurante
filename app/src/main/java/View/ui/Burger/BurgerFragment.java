@@ -91,7 +91,7 @@ public class BurgerFragment extends Fragment {
         hashMap.put("price_burger", price);
         hashMap.put("image_burger", "default");
         hashMap.put("shrink", modelBurger.isShrink());
-        databaseReference = database.getReference("M").child("Burger").child(name);
+        databaseReference = database.getReference("Menu").child("Burger").child(name);
         databaseReference.setValue(hashMap);
 
     }
@@ -120,7 +120,7 @@ public class BurgerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String deleteName = editTextDeleteNameCategoryBurger.getText().toString();
-                databaseReference = database.getReference("M").child("Burger");
+                databaseReference = database.getReference("Menu").child("Burger");
                 databaseReference.child(deleteName).removeValue();
             }
         });
@@ -164,7 +164,7 @@ public class BurgerFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Uri downloadUri = (Uri) task.getResult();
                             final String mUri = downloadUri.toString();
-                            databaseReference = database.getReference("M").child("Burger")
+                            databaseReference = database.getReference("Menu").child("Burger")
                                     .child(editTextNameCategoryBurger.getText().toString());
 //                        databaseReference.child("M").child("Burger").push().getKey();
                             HashMap<String, Object> hashMap = new HashMap<>();

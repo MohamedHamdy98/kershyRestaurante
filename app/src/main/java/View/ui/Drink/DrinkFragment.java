@@ -82,7 +82,7 @@ public class DrinkFragment extends Fragment {
         hashMap.put("price_drink", price);
         hashMap.put("image_drink", "default");
         hashMap.put("shrink", modelDrink.isShrink());
-        databaseReference = database.getReference("M").child("Drink").child(name);
+        databaseReference = database.getReference("Menu").child("Drink").child(name);
         databaseReference.setValue(hashMap);
     }
 
@@ -110,7 +110,7 @@ public class DrinkFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String deleteName = editTextDeleteNameCategoryDrink.getText().toString();
-                databaseReference = database.getReference("M").child("Drink");
+                databaseReference = database.getReference("Menu").child("Drink");
                 databaseReference.child(deleteName).removeValue();
             }
         });
@@ -154,7 +154,7 @@ public class DrinkFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Uri uri = (Uri) task.getResult();
                             final String image = uri.toString();
-                            databaseReference = database.getReference("M").child("Drink")
+                            databaseReference = database.getReference("Menu").child("Drink")
                                     .child(editTextNameCategoryDrink.getText().toString());
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("image_drink", image);
