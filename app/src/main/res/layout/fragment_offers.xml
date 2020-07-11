@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="View.ui.Drink.DrinkFragment">
+    tools:context="View.ui.Offers.OffersFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
         android:orientation="vertical">
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,11 +48,11 @@
                             app:cardCornerRadius="8dp"
                             android:elevation="10dp">
                             <ImageView
-                                android:id="@+id/imageView_category_drink"
+                                android:id="@+id/imageView_category_offers"
                                 android:layout_width="140dp"
-                                android:focusableInTouchMode="true"
                                 android:layout_height="140dp"
                                 android:scaleType="centerCrop"
+                                android:focusableInTouchMode="true"
                                 android:src="@drawable/ic_photo" />
                         </androidx.cardview.widget.CardView>
 
@@ -67,7 +68,7 @@
                                 android:layout_weight="1"
                                 android:orientation="horizontal">
                                 <EditText
-                                    android:id="@+id/editText_name_category_drink"
+                                    android:id="@+id/editText_name_category_offer"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start|center"
@@ -91,16 +92,16 @@
                                 android:layout_weight="1"
                                 android:orientation="horizontal">
                                 <EditText
-                                    android:id="@+id/editText_description_category_drink"
+                                    android:id="@+id/editText_oldPrice_category_offer"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start|center"
                                     android:focusableInTouchMode="true"
                                     android:layout_gravity="start|center_horizontal"
                                     android:paddingEnd="4dp"
-                                    android:inputType="text|textNoSuggestions"
+                                    android:inputType="number|textNoSuggestions"
                                     android:layout_marginBottom="10dp"
-                                    android:hint="Description"
+                                    android:hint="Old Price"
                                     android:textColorHint="#959599"
                                     android:textAllCaps="false"
                                     android:textColor="#fff"
@@ -113,16 +114,16 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
                                 <EditText
-                                    android:id="@+id/editText_price_category_drink"
+                                    android:id="@+id/editText_newPrice_category_offer"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start|center"
-                                    android:layout_gravity="start|center_horizontal"
                                     android:focusableInTouchMode="true"
+                                    android:layout_gravity="start|center_horizontal"
                                     android:paddingEnd="4dp"
                                     android:inputType="number|textNoSuggestions"
                                     android:layout_marginBottom="10dp"
-                                    android:hint="Price"
+                                    android:hint="New Price"
                                     android:textColorHint="#959599"
                                     android:textAllCaps="false"
                                     android:textColor="#fff"
@@ -139,7 +140,7 @@
                         android:layout_height="wrap_content"
                         style="@style/RippleStyleGrey">
                         <Button
-                            android:id="@+id/button_save_drink"
+                            android:id="@+id/button_save_offer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#00CB2C"
@@ -199,7 +200,7 @@
                                 android:layout_weight="1"
                                 android:orientation="horizontal">
                                 <EditText
-                                    android:id="@+id/editText_DeleteName_category_drink"
+                                    android:id="@+id/editText_DeleteName_category_offer"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start|center"
@@ -223,7 +224,7 @@
                         android:layout_height="wrap_content"
                         style="@style/RippleStyleGrey">
                         <Button
-                            android:id="@+id/button_delete_category_drink"
+                            android:id="@+id/button_delete_category_offer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#00CB2C"
@@ -241,5 +242,6 @@
             </androidx.cardview.widget.CardView>
 
         </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 </FrameLayout>

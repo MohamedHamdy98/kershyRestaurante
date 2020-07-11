@@ -80,7 +80,7 @@ public class CategoriesActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_profile,
-                R.id.nav_orders, R.id.nav_burger, R.id.nav_sweet,R.id.nav_drink)
+                R.id.nav_orders, R.id.nav_burger, R.id.nav_sweet,R.id.nav_drink,R.id.nav_offers)
                 .setDrawerLayout(drawer)
                 .build();
         navigationView.setItemIconTintList(null);
