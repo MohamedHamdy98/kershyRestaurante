@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,6 +48,7 @@ public class OrdersFragment extends Fragment {
         progressDialog.show();
         recyclerViewOrders.setHasFixedSize(true);
         recyclerViewOrders.setNestedScrollingEnabled(true);
+        recyclerViewOrders.setItemAnimator(new DefaultItemAnimator());
         recyclerViewOrders.setLayoutManager(new LinearLayoutManager(getActivity()));
         databaseReference.push().getKey();
         databaseReference.addValueEventListener(new ValueEventListener() {
