@@ -1,29 +1,73 @@
 package View.ui;
 
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Switch;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.Toast;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Database;
 
 import com.example.testeverythingtwo.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import Model.User;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class UserDetailsActivity extends AppCompatActivity {
-//    @BindView(R.id.write)
+    @BindView(R.id.recyclerView_order)
+    RecyclerView recyclerViewOrder;
+    @BindView(R.id.below)
+    CardView below;
+    @BindView(R.id.textView_userName)
+    TextView textViewUserName;
+    @BindView(R.id.textView_userPhone)
+    TextView textViewUserPhone;
+    @BindView(R.id.textView_userAddress)
+    TextView textViewUserAddress;
+    @BindView(R.id.textView_userTotalPrice)
+    TextView textViewUserTotalPrice;
+    @BindView(R.id.textView_userDelivery)
+    TextView textViewUserDelivery;
+    @BindView(R.id.textView_userTax)
+    TextView textViewUserTax;
+    @BindView(R.id.textView_userOffers)
+    TextView textViewUserOffers;
+    @BindView(R.id.textView_totalPriceToPay)
+    TextView textViewTotalPriceToPay;
+    @BindView(R.id.c)
+    CardView c;
+    @BindView(R.id.button_write)
+    Button buttonWrite;
+    @BindView(R.id.switch_write)
+    Switch switchWrite;
+    @BindView(R.id.button_prepare)
+    Button buttonPrepare;
+    @BindView(R.id.switch_prepare)
+    Switch switchPrepare;
+    @BindView(R.id.button_way)
+    Button buttonWay;
+    @BindView(R.id.switch_onTheWay)
+    Switch switchOnTheWay;
+    @BindView(R.id.button_delivered)
+    Button buttonDelivered;
+    @BindView(R.id.switch_delivery)
+    Switch switchDelivery;
+    @BindView(R.id.bottomCard)
+    CardView bottomCard;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference,databaseReference2,databaseReference3;
+
+    //    @BindView(R.id.write)
 //    Button write;
 //    @BindView(R.id.prepare)
 //    Button prepare;
@@ -45,6 +89,48 @@ public class UserDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
         ButterKnife.bind(this);
+        getDtatUser();
+    }
+
+    private void getDtatUser() {
+        databaseReference = database.getReference("Cart");
+        databaseReference.push().getKey();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    String key = snapshot.getKey();
+                    String name = snapshot.child("UserName").getValue(String.class);
+                    String phone = snapshot.child(key).child("Phone").getValue(String.class);
+                    String address = snapshot.child("AddressWrite").getValue(String.class);
+                    String totalPrice = snapshot.child("totalPrice").getValue(String.class);
+                    String totalPriceToPay = snapshot.child("TotalPriceToPay").getValue(String.class);
+                    textViewUserName.setText(name);
+                    textViewUserPhone.setText(phone);
+                    textViewUserAddress.setText(address);
+                    textViewUserTotalPrice.setText(totalPrice);
+                    textViewTotalPriceToPay.setText(totalPriceToPay);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        databaseReference2 = database.getReference();
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String tax = dataSnapshot.child("Tax").getValue(String.class);
+                    String deliveryFee = dataSnapshot.child("deliveryFee").getValue(String.class);
+                    String offers = dataSnapshot.child("Offers").getValue(String.class);
+                    textViewUserTax.setText(tax);
+                    textViewUserDelivery.setText(deliveryFee);
+                    textViewUserOffers.setText(offers);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
 //    public void onClickButton() {

@@ -132,6 +132,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/textView_userName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end|center"
@@ -160,12 +161,13 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_weight="1"
-                                android:text="Name"
+                                android:text="Phone"
                                 android:textColor="#959599"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/textView_userPhone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end|center"
@@ -194,12 +196,13 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_weight="1"
-                                android:text="Name"
+                                android:text="Address"
                                 android:textColor="#959599"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/textView_userAddress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end|center"
@@ -228,12 +231,13 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_weight="1"
-                                android:text="Name"
+                                android:text="Total Price"
                                 android:textColor="#959599"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/textView_userTotalPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end|center"
@@ -262,12 +266,13 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_weight="1"
-                                android:text="Name"
+                                android:text="Delivery Fee"
                                 android:textColor="#959599"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/textView_userDelivery"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end|center"
@@ -296,12 +301,48 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_weight="1"
-                                android:text="Name"
+                                android:text="Tax"
                                 android:textColor="#959599"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/textView_userTax"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end|center"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:paddingEnd="30dp"
+                                android:text="User Name"
+                                android:textAllCaps="false"
+                                android:textColor="#959599"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|start"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                android:text="Offers"
+                                android:textColor="#959599"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textView_userOffers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end|center"
@@ -346,7 +387,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/textView_cart_totalPrice"
+                                android:id="@+id/textView_totalPriceToPay"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end|center"
@@ -406,7 +447,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content">
                         <Button
-                            android:id="@+id/write"
+                            android:id="@+id/button_write"
                             android:layout_margin="10dp"
                             android:textAllCaps="false"
                             android:textStyle="bold"
@@ -421,7 +462,7 @@
                     </com.balysv.materialripple.MaterialRippleLayout>
 
                     <Switch
-                        android:id="@+id/switch1"
+                        android:id="@+id/switch_write"
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="center"
@@ -440,7 +481,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content">
                         <Button
-                            android:id="@+id/prepare"
+                            android:id="@+id/button_prepare"
                             android:layout_margin="10dp"
                             android:textColor="#fff"
                             android:textAllCaps="false"
@@ -455,7 +496,7 @@
                     </com.balysv.materialripple.MaterialRippleLayout>
 
                     <Switch
-                        android:id="@+id/switch2"
+                        android:id="@+id/switch_prepare"
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="center"
@@ -474,7 +515,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content">
                         <Button
-                            android:id="@+id/way"
+                            android:id="@+id/button_way"
                             android:textColor="#fff"
                             android:layout_margin="10dp"
                             android:textAllCaps="false"
@@ -489,7 +530,7 @@
                     </com.balysv.materialripple.MaterialRippleLayout>
 
                     <Switch
-                    android:id="@+id/switch3"
+                    android:id="@+id/switch_onTheWay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -508,7 +549,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content">
                         <Button
-                            android:id="@+id/delivered"
+                            android:id="@+id/button_delivered"
                             android:textColor="#fff"
                             android:layout_margin="10dp"
                             android:textAllCaps="false"
@@ -523,7 +564,7 @@
                     </com.balysv.materialripple.MaterialRippleLayout>
 
                     <Switch
-                        android:id="@+id/switch4"
+                        android:id="@+id/switch_delivery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
