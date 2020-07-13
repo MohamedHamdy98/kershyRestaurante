@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.testeverythingtwo.R;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import butterknife.ButterKnife;
 
 public class MyAdapterOrders extends RecyclerView.Adapter<MyAdapterOrders.ViewHolder> {
     private ArrayList<ModelCart> modelCartArrayList = new ArrayList<>();
-    private Context context;
+    Context context;
 
     public MyAdapterOrders(ArrayList<ModelCart> modelArrayList, Context context) {
         this.modelCartArrayList = modelArrayList;
@@ -35,7 +34,7 @@ public class MyAdapterOrders extends RecyclerView.Adapter<MyAdapterOrders.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         ModelCart modelCart = modelCartArrayList.get(position);
         holder.textViewNameOfItem.setText(modelCart.getName());
         holder.textViewNumberOfItem.setText(modelCart.getNumItem());

@@ -31,8 +31,6 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
 
     private ArrayList<User> modelArrayList = new ArrayList<>();
     private Context context;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = database.getReference();
 
     public MyAdapterUser(ArrayList<User> modelArrayList, Context context) {
         this.modelArrayList = modelArrayList;
@@ -52,7 +50,6 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
         holder.imageViewViewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Show", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, UserDetailsActivity.class);
                 context.startActivity(intent);
             }
