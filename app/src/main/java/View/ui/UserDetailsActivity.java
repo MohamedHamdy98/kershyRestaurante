@@ -3,12 +3,11 @@ package View.ui;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -16,21 +15,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testeverythingtwo.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 import Adapter.MyAdapterOrders;
+import Adapter.MyAdapterUser;
+import Adapter.RecyclerViewClickInterface;
 import Model.ModelCart;
+import Model.User;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class UserDetailsActivity extends AppCompatActivity {
+public class UserDetailsActivity extends AppCompatActivity implements RecyclerViewClickInterface {
+
     @BindView(R.id.recyclerView_order)
     RecyclerView recyclerViewOrder;
     @BindView(R.id.below)
@@ -53,27 +59,9 @@ public class UserDetailsActivity extends AppCompatActivity {
     TextView textViewTotalPriceToPay;
     @BindView(R.id.c)
     CardView c;
-    @BindView(R.id.button_write)
-    Button buttonWrite;
-    @BindView(R.id.switch_write)
-    Switch switchWrite;
-    @BindView(R.id.button_prepare)
-    Button buttonPrepare;
-    @BindView(R.id.switch_prepare)
-    Switch switchPrepare;
-    @BindView(R.id.button_way)
-    Button buttonWay;
-    @BindView(R.id.switch_onTheWay)
-    Switch switchOnTheWay;
-    @BindView(R.id.button_delivered)
-    Button buttonDelivered;
-    @BindView(R.id.switch_delivery)
-    Switch switchDelivery;
-    @BindView(R.id.bottomCard)
-    CardView bottomCard;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference, databaseReference2;
-    ArrayList<ModelCart> modelCartArrayList = new ArrayList<>();
+    private DatabaseReference databaseReference2;
+    ArrayList<User> modelUserArrayList = new ArrayList<>();
     MyAdapterOrders myAdapterOrders;
     Context context;
 
@@ -83,8 +71,6 @@ public class UserDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_details);
         ButterKnife.bind(this);
         getDataUser();
-        checkSeekBar();
-        controlDelivery();
         start_recyclerView();
     }
 
@@ -94,24 +80,23 @@ public class UserDetailsActivity extends AppCompatActivity {
         progressDialog.show();
         recyclerViewOrder.setHasFixedSize(true);
         recyclerViewOrder.setNestedScrollingEnabled(true);
-        recyclerViewOrder.setItemAnimator(new DefaultItemAnimator());
         recyclerViewOrder.setLayoutManager(new LinearLayoutManager(this));
         FirebaseDatabase fireData = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = fireData.getReference("Order");
-        databaseReference.push().getKey();
+        String id = getIntent().getExtras().getString("id");
+        DatabaseReference databaseReference = fireData.getReference("Cart").child(id).child("Order");
+        textViewUserName.setText(id);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                modelCartArrayList.clear();
-                for (DataSnapshot snap : dataSnapshot.getChildren()){
-                    for (DataSnapshot snap1 : snap.getChildren()) {
-                        ModelCart modelCart = snap1.getValue(ModelCart.class);
-                        modelCartArrayList.add(modelCart);
-                    }
+                modelUserArrayList.clear();
+                //for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot snapData : dataSnapshot.getChildren()) {
+                        User user = snapData.getValue(User.class);
+                        modelUserArrayList.add(user);
+                  //  }
+                    myAdapterOrders = new MyAdapterOrders(modelUserArrayList, context);
+                    recyclerViewOrder.setAdapter(myAdapterOrders);
                 }
-                myAdapterOrders = new MyAdapterOrders(modelCartArrayList, context);
-                recyclerViewOrder.setAdapter(myAdapterOrders);
-                progressDialog.dismiss();
             }
 
             @Override
@@ -119,77 +104,15 @@ public class UserDetailsActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void controlDelivery() {
-        // To save value is true or false...
-        databaseReference = database.getReference("Cart");
-        databaseReference.push().getKey();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String key = snapshot.getKey();
-                    boolean writeOrder = snapshot.child("writeOrder").getValue(Boolean.class);
-                    boolean preparingOrder = snapshot.child("preparingOrder").getValue(Boolean.class);
-                    boolean wayOrder = snapshot.child("wayOrder").getValue(Boolean.class);
-                    boolean deliveredOrder = snapshot.child("deliveredOrder").getValue(Boolean.class);
-                    if (writeOrder == true) {
-                        switchWrite.setChecked(true);
-                    } else {
-                        switchWrite.setChecked(false);
-                    }
-                    if (preparingOrder == true) {
-                        switchPrepare.setChecked(true);
-                    } else {
-                        switchPrepare.setChecked(false);
-                    }
-                    if (wayOrder == true) {
-                        switchOnTheWay.setChecked(true);
-                    } else {
-                        switchOnTheWay.setChecked(false);
-                    }
-                    if (deliveredOrder == true) {
-                        switchDelivery.setChecked(true);
-                    } else {
-                        switchDelivery.setChecked(false);
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        progressDialog.dismiss();
     }
 
     private void getDataUser() {
-        databaseReference = database.getReference("Cart");
-        databaseReference.push().getKey();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String key = snapshot.getKey();
-                    String name = snapshot.child("UserName").getValue(String.class);
-                    String phone = snapshot.child("Phone").getValue(String.class);
-                    String address = snapshot.child("AddressWrite").getValue(String.class);
-                    String totalPrice = snapshot.child("totalPrice").getValue(String.class);
-                    String totalPriceToPay = snapshot.child("TotalPriceToPay").getValue(String.class);
-                    textViewUserName.setText(name);
-                    textViewUserPhone.setText(phone);
-                    textViewUserAddress.setText(address);
-                    textViewUserTotalPrice.setText(totalPrice);
-                    textViewTotalPriceToPay.setText(totalPriceToPay);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+        //textViewUserName.setText(getIntent().getExtras().getString("name"));
+        textViewUserPhone.setText(getIntent().getExtras().getString("phone"));
+        textViewUserAddress.setText(getIntent().getExtras().getString("address"));
+        textViewUserTotalPrice.setText(getIntent().getExtras().getString("totalPrice"));
+        textViewTotalPriceToPay.setText(getIntent().getExtras().getString("totalPriceToPay"));
         databaseReference2 = database.getReference();
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
@@ -208,75 +131,14 @@ public class UserDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void checkSeekBar() {
-        FirebaseDatabase data = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = data.getReference("Cart");
-        databaseReference.push().getKey();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    final String key = snapshot.getKey();
-                    switchWrite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                            if (isChecked) {
-                                databaseReference.child(key).child("writeOrder").setValue(true);
-                                databaseReference.child(key).child("progress").setValue(true);
-                            } else {
-                                databaseReference.child(key).child("writeOrder").setValue(false);
-                            }
-                        }
-                    });
-                    switchPrepare.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                            if (isChecked) {
-                                databaseReference.child(key).child("preparingOrder").setValue(true);
-
-                            } else {
-                                databaseReference.child(key).child("preparingOrder").setValue(false);
-                            }
-
-                        }
-                    });
-                    switchOnTheWay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                            if (isChecked) {
-                                databaseReference.child(key).child("wayOrder").setValue(true);
-
-                            } else {
-                                databaseReference.child(key).child("wayOrder").setValue(false);
-                            }
-
-                        }
-                    });
-                    switchDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                            if (isChecked) {
-                                databaseReference.child(key).child("deliveredOrder").setValue(true);
-
-                            } else {
-                                databaseReference.child(key).child("deliveredOrder").setValue(false);
-                            }
-
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-
-    }
-
     private void saveSeekBarProgress() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = database.getReference("Cart").child("valueSeekBar");
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 
 //    public void onClickButton () {

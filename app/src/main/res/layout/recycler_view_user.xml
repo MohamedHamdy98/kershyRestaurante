@@ -60,16 +60,173 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/imageView_viewUser"
-                        android:layout_width="30dp"
+                    <Switch
+                        android:id="@+id/switch_viewUser"
+                        android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_margin="20dp"
-                        android:layout_gravity="center|end"
-                        android:src="@drawable/ic_viewgreen_40"/>
-
+                        android:layout_gravity="center|end"/>
 
                 </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:id="@+id/cardView_user_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="3dp"
+                    android:elevation="12dp"
+                    app:cardBackgroundColor="#2A2A32"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <com.balysv.materialripple.MaterialRippleLayout
+                                style="@style/RippleStyleGrey"
+                                android:layout_width="40dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/button_write"
+                                    android:layout_margin="10dp"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"
+                                    android:textAlignment="center"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_circle_shape_login"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:textColor="#fff"
+                                    android:text="write" />
+                            </com.balysv.materialripple.MaterialRippleLayout>
+
+                            <Switch
+                                android:id="@+id/switch_write"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:layout_margin="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <com.balysv.materialripple.MaterialRippleLayout
+                                style="@style/RippleStyleGrey"
+                                android:layout_width="40dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/button_prepare"
+                                    android:layout_margin="10dp"
+                                    android:textColor="#fff"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"
+                                    android:textAlignment="center"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_circle_shape_login"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:text="prepare" />
+                            </com.balysv.materialripple.MaterialRippleLayout>
+
+                            <Switch
+                                android:id="@+id/switch_prepare"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:layout_margin="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <com.balysv.materialripple.MaterialRippleLayout
+                                style="@style/RippleStyleGrey"
+                                android:layout_width="40dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/button_way"
+                                    android:textColor="#fff"
+                                    android:layout_margin="10dp"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"
+                                    android:textAlignment="center"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_circle_shape_login"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:text="on the way" />
+                            </com.balysv.materialripple.MaterialRippleLayout>
+
+                            <Switch
+                                android:id="@+id/switch_onTheWay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:layout_margin="10dp"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <com.balysv.materialripple.MaterialRippleLayout
+                                style="@style/RippleStyleGrey"
+                                android:layout_width="40dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/button_delivered"
+                                    android:textColor="#fff"
+                                    android:layout_margin="10dp"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textSize="18sp"
+                                    android:textAlignment="center"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_circle_shape_login"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:text="delivered" />
+                            </com.balysv.materialripple.MaterialRippleLayout>
+
+                            <Switch
+                                android:id="@+id/switch_delivery"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:layout_margin="10dp"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

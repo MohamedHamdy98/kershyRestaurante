@@ -1,6 +1,7 @@
 package View.ui.Orders;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import Adapter.MyAdapterOrders;
 import Adapter.MyAdapterUser;
+import Adapter.RecyclerViewClickInterface;
 import Model.User;
+import View.ui.UserDetailsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,7 +35,7 @@ public class OrdersFragment extends Fragment {
     @BindView(R.id.recyclerView_orders)
     RecyclerView recyclerViewOrders;
     private MyAdapterUser myAdapterUser;
-    private ArrayList<User> userArrayList = new ArrayList<>();
+    private ArrayList<User> userArrayList;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = database.getReference("Cart");
 
@@ -46,6 +50,10 @@ public class OrdersFragment extends Fragment {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+        userArrayList = new ArrayList<>();
+//        Intent intent = getActivity().getIntent();
+//        Bundle bundle = intent.getExtras();
+//        User user = (User) bundle.getSerializable("key");
         recyclerViewOrders.setHasFixedSize(true);
         recyclerViewOrders.setNestedScrollingEnabled(true);
         recyclerViewOrders.setItemAnimator(new DefaultItemAnimator());
@@ -56,10 +64,11 @@ public class OrdersFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userArrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    User user = snapshot.getValue(User.class);
+                    User user;
+                    user = snapshot.getValue(User.class);
                     userArrayList.add(user);
                 }
-                myAdapterUser = new MyAdapterUser(userArrayList,getActivity());
+                myAdapterUser = new MyAdapterUser(userArrayList);
                 recyclerViewOrders.setAdapter(myAdapterUser);
                 progressDialog.dismiss();
             }
@@ -68,8 +77,6 @@ public class OrdersFragment extends Fragment {
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
+
 }

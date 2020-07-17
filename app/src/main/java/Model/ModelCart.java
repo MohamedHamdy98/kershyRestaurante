@@ -1,6 +1,8 @@
 package Model;
 
-public class ModelCart {
+import java.io.Serializable;
+
+public class ModelCart implements Serializable {
     private String id;
     public String name;
     public String numItem;

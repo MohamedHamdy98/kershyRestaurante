@@ -1,6 +1,7 @@
 package Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,16 @@ import com.example.testeverythingtwo.R;
 import java.util.ArrayList;
 
 import Model.ModelCart;
+import Model.User;
+import View.ui.UserDetailsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MyAdapterOrders extends RecyclerView.Adapter<MyAdapterOrders.ViewHolder> {
-    private ArrayList<ModelCart> modelCartArrayList = new ArrayList<>();
+    private ArrayList<User> modelCartArrayList = new ArrayList<>();
     Context context;
 
-    public MyAdapterOrders(ArrayList<ModelCart> modelArrayList, Context context) {
+    public MyAdapterOrders(ArrayList<User> modelArrayList, Context context) {
         this.modelCartArrayList = modelArrayList;
         this.context = context;
     }
@@ -35,10 +38,10 @@ public class MyAdapterOrders extends RecyclerView.Adapter<MyAdapterOrders.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        ModelCart modelCart = modelCartArrayList.get(position);
-        holder.textViewNameOfItem.setText(modelCart.getName());
-        holder.textViewNumberOfItem.setText(modelCart.getNumItem());
-        holder.textViewTotalPriceCart.setText(modelCart.getPrice());
+        User user = modelCartArrayList.get(position);
+        holder.textViewNameOfItem.setText(user.getName());
+        holder.textViewNumberOfItem.setText(user.getNumItem());
+        holder.textViewTotalPriceCart.setText(user.getPrice());
     }
 
     @Override
@@ -46,12 +49,11 @@ public class MyAdapterOrders extends RecyclerView.Adapter<MyAdapterOrders.ViewHo
         return modelCartArrayList.size();
     }
 
-    public void setList(ArrayList<ModelCart> models) {
+    public void setList(ArrayList<User> models) {
         this.modelCartArrayList = models;
         notifyDataSetChanged();
     }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.textView_total_price_cart)
         TextView textViewTotalPriceCart;
         @BindView(R.id.textView_name_of_item)
@@ -62,5 +64,8 @@ public class MyAdapterOrders extends RecyclerView.Adapter<MyAdapterOrders.ViewHo
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
+
     }
+
 }
