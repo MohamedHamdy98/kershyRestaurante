@@ -6,11 +6,11 @@ import java.io.Serializable;
 
 public class User {
     private String id;
-    public String name;
-    public String numItem;
-    public String price;
+    private String name;
+    private String numItem;
+    private String price;
     private boolean isShrink = false;
-    public String nameUser;
+    private String nameUser;
     private String imageURL;
     private String Phone;
     private String UserName;

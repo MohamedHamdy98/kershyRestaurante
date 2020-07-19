@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +45,9 @@ public class OrdersFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_orders, container, false);
         ButterKnife.bind(this,root);
         start_RecyclerView();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
         return root;
     }
     private void start_RecyclerView(){
@@ -51,9 +55,6 @@ public class OrdersFragment extends Fragment {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
         userArrayList = new ArrayList<>();
-//        Intent intent = getActivity().getIntent();
-//        Bundle bundle = intent.getExtras();
-//        User user = (User) bundle.getSerializable("key");
         recyclerViewOrders.setHasFixedSize(true);
         recyclerViewOrders.setNestedScrollingEnabled(true);
         recyclerViewOrders.setItemAnimator(new DefaultItemAnimator());

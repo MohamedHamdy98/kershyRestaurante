@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -35,12 +36,9 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
 
     private ArrayList<User> modelArrayList = new ArrayList<>();
 
-    private RecyclerViewClickInterface recyclerViewClickInterface;
-
     public MyAdapterUser(ArrayList<User> modelArrayList) {
         this.modelArrayList = modelArrayList;
     }
-
 
     @NonNull
     @Override
@@ -54,29 +52,10 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final User user = modelArrayList.get(position);
         holder.textViewShowUserDetails.setText(user.getUserName());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent intent = new Intent(v.getContext(), UserDetailsActivity.class);
-//                FirebaseDatabase fireData = FirebaseDatabase.getInstance();
-//                DatabaseReference databaseReference = fireData.getReference("Order");
-//                databaseReference.push().getKey();
-//                databaseReference.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        modelArrayList.clear();
-//                       // for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                            for (DataSnapshot snapData : dataSnapshot.getChildren()) {
-//                                User user1 = snapData.getValue(User.class);
-//                                modelArrayList.add(user1);
-//                            //}
-//                        }
-//                    }
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//                    }
-//                });
                 intent.putExtra("id",modelArrayList.get(position).getId());
                 intent.putExtra("name", modelArrayList.get(position).getUserName());
                 intent.putExtra("phone", modelArrayList.get(position).getPhone());
@@ -86,19 +65,15 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
                 v.getContext().startActivity(intent);
             }
         });
-        holder.switchViewUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.d.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    holder.cardViewUserDelivery.setVisibility(View.VISIBLE);
-                } else {
-                    holder.cardViewUserDelivery.setVisibility(View.GONE);
-                }
+            public void onClick(View v) {
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference()
+                        .child("Cart").child(user.getId());
+                databaseReference.removeValue();
             }
         });
-
-        checkSeekBar(holder, position);
-        //controlDelivery(holder);
     }
 
     @Override
@@ -114,148 +89,13 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.textView_show_user_details)
         TextView textViewShowUserDetails;
-        @BindView(R.id.switch_viewUser)
-        Switch switchViewUser;
-        @BindView(R.id.button_write)
-        Button buttonWrite;
-        @BindView(R.id.switch_write)
-        Switch switchWrite;
-        @BindView(R.id.button_prepare)
-        Button buttonPrepare;
-        @BindView(R.id.switch_prepare)
-        Switch switchPrepare;
-        @BindView(R.id.button_way)
-        Button buttonWay;
-        @BindView(R.id.switch_onTheWay)
-        Switch switchOnTheWay;
-        @BindView(R.id.button_delivered)
-        Button buttonDelivered;
-        @BindView(R.id.switch_delivery)
-        Switch switchDelivery;
-        @BindView(R.id.cardView_user_delivery)
-        CardView cardViewUserDelivery;
+        @BindView(R.id.d)
+        ImageView d;
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    recyclerViewClickInterface.onItemClick(getAdapterPosition());
-                }
-            });
         }
     }
 
-    private void controlDelivery(final ViewHolder holder) {
-        FirebaseDatabase data = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference2;
-        // To save value is true or false...
-        databaseReference2 = data.getReference("Cart");
-        databaseReference2.push().getKey();
-        databaseReference2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String key = snapshot.getKey();
-                    boolean writeOrder = snapshot.child("writeOrder").getValue(Boolean.class);
-                    boolean preparingOrder = snapshot.child("preparingOrder").getValue(Boolean.class);
-                    boolean wayOrder = snapshot.child("wayOrder").getValue(Boolean.class);
-                    boolean deliveredOrder = snapshot.child("deliveredOrder").getValue(Boolean.class);
-                    if (writeOrder == true) {
-                        holder.switchWrite.setChecked(true);
-                    } else {
-                        holder.switchWrite.setChecked(false);
-                    }
-                    if (preparingOrder == true) {
-                        holder.switchPrepare.setChecked(true);
-                    } else {
-                        holder.switchPrepare.setChecked(false);
-                    }
-                    if (wayOrder == true) {
-                        holder.switchOnTheWay.setChecked(true);
-                    } else {
-                        holder.switchOnTheWay.setChecked(false);
-                    }
-                    if (deliveredOrder == true) {
-                        holder.switchDelivery.setChecked(true);
-                    } else {
-                        holder.switchDelivery.setChecked(false);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void checkSeekBar(final ViewHolder holder, int position) {
-        final User user = modelArrayList.get(position);
-        FirebaseDatabase data = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = data.getReference("Cart");
-        //databaseReference.push().getKey();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    final String key = snapshot.getKey();
-                    holder.switchWrite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                            if (isChecked) {
-                                databaseReference.child(key).child("writeOrder").setValue(true);
-                                databaseReference.child(key).child("progress").setValue(true);
-                            } else {
-                                databaseReference.child(key).child("writeOrder").setValue(false);
-                            }
-                        }
-                    });
-                    holder.switchPrepare.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                            if (isChecked) {
-                                databaseReference.child(key).child("preparingOrder").setValue(true);
-
-                            } else {
-                                databaseReference.child(key).child("preparingOrder").setValue(false);
-                            }
-
-                        }
-                    });
-                    holder.switchOnTheWay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                            if (isChecked) {
-                                databaseReference.child(key).child("wayOrder").setValue(true);
-
-                            } else {
-                                databaseReference.child(key).child("wayOrder").setValue(false);
-                            }
-
-                        }
-                    });
-                    holder.switchDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                            if (isChecked) {
-                                databaseReference.child(key).child("deliveredOrder").setValue(true);
-
-                            } else {
-                                databaseReference.child(key).child("deliveredOrder").setValue(false);
-                            }
-
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-
-    }
 
 }

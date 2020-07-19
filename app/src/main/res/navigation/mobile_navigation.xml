@@ -35,4 +35,9 @@
         android:name="View.ui.Offers.OffersFragment"
         android:label="Drink"
         tools:layout="@layout/fragment_offers" />
+    <fragment
+        android:id="@+id/nav_information"
+        android:name="View.ui.RestInformation.InforamationFragment"
+        android:label="Drink"
+        tools:layout="@layout/fragment_inforamation" />
 </navigation>

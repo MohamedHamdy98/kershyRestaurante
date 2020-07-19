@@ -1,7 +1,6 @@
 package Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,7 @@ import com.example.testeverythingtwo.R;
 
 import java.util.ArrayList;
 
-import Model.ModelCart;
 import Model.User;
-import View.ui.UserDetailsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
