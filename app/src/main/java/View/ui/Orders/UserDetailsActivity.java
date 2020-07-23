@@ -40,7 +40,8 @@ public class UserDetailsActivity extends AppCompatActivity {
     TextView textViewUserName;
     @BindView(R.id.textView_userPhone)
     TextView textViewUserPhone;
-    @BindView(R.id.textView_userAddress)
+    @BindView(R.id
+            .textView_userAddress)
     TextView textViewUserAddress;
     @BindView(R.id.textView_userTotalPrice)
     TextView textViewUserTotalPrice;

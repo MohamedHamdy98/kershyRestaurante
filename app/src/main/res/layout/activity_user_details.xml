@@ -67,7 +67,7 @@
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/bangers"
                                     android:gravity="center"
-                                    android:text="Kershy Order"
+                                    android:text="@string/kershy_order"
                                     android:textAllCaps="false"
                                     android:textColor="#fff"
                                     android:textSize="30sp" />
@@ -122,47 +122,47 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
-                                        android:layout_marginStart="30dp"
+                                        android:layout_marginLeft="30dp"
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Time"
+                                        android:text="@string/time"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:layout_alignParentEnd="true"
                                         android:id="@+id/textView_time"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="end|center"
+                                        android:layout_gravity="center"
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="Time Order"
                                         android:textAllCaps="false"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
+                                        android:layoutDirection="ltr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
@@ -170,12 +170,13 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Name"
+                                        android:text="@string/name"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:layout_alignParentEnd="true"
                                         android:id="@+id/textView_userName"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -185,19 +186,18 @@
                                         android:layout_weight="1"
                                         android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="User Name"
                                         android:textAllCaps="false"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
@@ -205,7 +205,8 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Phone"
+                                        android:layoutDirection="ltr"
+                                        android:text="@string/phone"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
@@ -214,25 +215,24 @@
                                         android:id="@+id/textView_userPhone"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
                                         android:layout_gravity="end|center"
                                         android:layout_marginTop="8dp"
-                                        android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
                                         android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="User Name"
                                         android:textAllCaps="false"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
@@ -240,7 +240,8 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Address"
+                                        android:layoutDirection="ltr"
+                                        android:text="@string/address"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
@@ -249,25 +250,24 @@
                                         android:id="@+id/textView_userAddress"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
                                         android:layout_gravity="end|center"
                                         android:layout_marginTop="8dp"
-                                        android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
                                         android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="User Name"
                                         android:textAllCaps="false"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
@@ -275,12 +275,14 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Total Price"
+                                        android:layoutDirection="ltr"
+                                        android:text="@string/total_price"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:layout_alignParentEnd="true"
                                         android:id="@+id/textView_userTotalPrice"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -290,19 +292,18 @@
                                         android:layout_weight="1"
                                         android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="User Name"
                                         android:textAllCaps="false"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
@@ -310,7 +311,8 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Delivery Fee"
+                                        android:layoutDirection="ltr"
+                                        android:text="@string/delivery_fee"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
@@ -319,25 +321,24 @@
                                         android:id="@+id/textView_userDelivery"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
                                         android:layout_gravity="end|center"
                                         android:layout_marginTop="8dp"
-                                        android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
                                         android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="User Name"
                                         android:textAllCaps="false"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
@@ -345,12 +346,14 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Tax"
+                                        android:layoutDirection="ltr"
+                                        android:text="@string/tax"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:layout_alignParentEnd="true"
                                         android:id="@+id/textView_userTax"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -360,19 +363,18 @@
                                         android:layout_weight="1"
                                         android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="User Name"
                                         android:textAllCaps="false"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
@@ -380,12 +382,14 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Offers"
+                                        android:layoutDirection="ltr"
+                                        android:text="@string/offers"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:layout_alignParentEnd="true"
                                         android:id="@+id/textView_userOffers"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -395,12 +399,11 @@
                                         android:layout_weight="1"
                                         android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="User Name"
                                         android:textAllCaps="false"
                                         android:textColor="#959599"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
                                 <View
                                     android:layout_width="match_parent"
@@ -411,13 +414,13 @@
                                     android:layout_marginBottom="10dp"
                                     android:background="#55555C" />
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="20dp"
-                                    android:orientation="horizontal">
+                                    android:layout_marginBottom="20dp">
 
                                     <TextView
+                                        android:layout_alignParentStart="true"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center|start"
@@ -425,12 +428,13 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginBottom="5dp"
                                         android:layout_weight="1"
-                                        android:text="Total Price"
+                                        android:text="@string/total_price"
                                         android:textColor="#fff"
                                         android:textSize="18sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:layout_alignParentEnd="true"
                                         android:id="@+id/textView_totalPriceToPay"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -440,11 +444,10 @@
                                         android:layout_weight="1"
                                         android:gravity="end"
                                         android:paddingEnd="30dp"
-                                        android:text="0"
                                         android:textColor="#fff"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
-                                </LinearLayout>
+                                </RelativeLayout>
 
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -494,14 +497,14 @@
                                         android:layout_margin="10dp"
                                         android:textAllCaps="false"
                                         android:textStyle="bold"
-                                        android:textSize="18sp"
+                                        android:textSize="14sp"
                                         android:textAlignment="center"
                                         android:gravity="center"
                                         android:background="@drawable/button_circle_shape_login"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:textColor="#fff"
-                                        android:text="write" />
+                                        android:text="@string/write" />
                                 </com.balysv.materialripple.MaterialRippleLayout>
 
                                 <Switch
@@ -529,13 +532,13 @@
                                         android:textColor="#fff"
                                         android:textAllCaps="false"
                                         android:textStyle="bold"
-                                        android:textSize="18sp"
+                                        android:textSize="14sp"
                                         android:textAlignment="center"
                                         android:gravity="center"
                                         android:background="@drawable/button_circle_shape_login"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:text="prepare" />
+                                        android:text="@string/prepare" />
                                 </com.balysv.materialripple.MaterialRippleLayout>
 
                                 <Switch
@@ -563,13 +566,13 @@
                                         android:layout_margin="10dp"
                                         android:textAllCaps="false"
                                         android:textStyle="bold"
-                                        android:textSize="18sp"
+                                        android:textSize="14sp"
                                         android:textAlignment="center"
                                         android:gravity="center"
                                         android:background="@drawable/button_circle_shape_login"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:text="on the way" />
+                                        android:text="@string/on_the_way" />
                                 </com.balysv.materialripple.MaterialRippleLayout>
 
                                 <Switch
@@ -597,13 +600,13 @@
                                         android:layout_margin="10dp"
                                         android:textAllCaps="false"
                                         android:textStyle="bold"
-                                        android:textSize="18sp"
+                                        android:textSize="14sp"
                                         android:textAlignment="center"
                                         android:gravity="center"
                                         android:background="@drawable/button_circle_shape_login"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:text="delivered" />
+                                        android:text="@string/delivered" />
                                 </com.balysv.materialripple.MaterialRippleLayout>
 
                                 <Switch

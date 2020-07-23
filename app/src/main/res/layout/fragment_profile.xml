@@ -70,7 +70,7 @@
                             android:layout_margin="10dp"
                             android:textStyle="bold"
                             android:textAllCaps="false"
-                            android:text="Restaurant Name"
+                            android:text="@string/restaurant_name"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
                         <TextView
                             android:id="@+id/textView_restaurantName"
@@ -85,7 +85,6 @@
                             android:gravity="center"
                             android:textStyle="bold"
                             android:textAllCaps="false"
-                            android:text="Restaurant Name"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
                     </LinearLayout>
                     <LinearLayout
@@ -105,7 +104,7 @@
                             android:textStyle="bold"
                             android:textAllCaps="false"
                             android:gravity="left"
-                            android:text="Name : "
+                            android:text="@string/nameProfile"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
                         <EditText
                             android:id="@+id/editText_restaurantName"
@@ -117,7 +116,7 @@
                             android:layout_gravity="center"
                             android:textColor="#959599"
                             android:textSize="16sp"
-                            android:hint="Please! Enter Restaurant name!"
+                            android:hint="@string/please_enter_restaurant_name"
                             android:textColorHint="#959599"
                             android:textStyle="bold"
                             android:textAllCaps="false"

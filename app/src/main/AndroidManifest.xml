@@ -26,6 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
+        <activity android:name="View.ui.ResetPasswordActivity"></activity>
         <activity android:name="View.ui.Orders.UserDetailsActivity" />
         <activity android:name="View.ui.LogInActivity" />
         <activity android:name="View.ui.SignUpActivity" />

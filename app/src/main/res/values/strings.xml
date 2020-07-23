@@ -8,11 +8,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="uploading">Uploading...</string>
     <string name="uplaodingImage">Uploading...</string>
     <string name="chooseImage">Please! Choose image!</string>
@@ -26,9 +22,49 @@
     <string name="Please_Enter_Your_Email">Please Enter Your Email</string>
     <string name="Please_Enter_Your_Password">Please Enter Your Password</string>
     <string name="Password_should_be_more_than_6_letters">Password should be more than 6 letters</string>
-    <string name="LogIn_success">LogIn success</string>
+    <string name="LogIn_success">LogIn Success</string>
     <string name="LogIn_failed">LogIn Failed</string>
     <string name="Please_Enter_Your_Name">Please Enter Your Name</string>
     <string name="Authentication_success">Authentication success.</string>
     <string name="Authentication_failed">Authentication Failed.</string>
+    <string name="profile">Profile</string>
+    <string name="restaurant_profile">Restaurant Profile</string>
+    <string name="categories">Categories</string>
+    <string name="current_orders">Current Orders</string>
+    <string name="burger">Burger</string>
+    <string name="sweet">Sweet</string>
+    <string name="drink">Drink</string>
+    <string name="offers">Offers</string>
+    <string name="restaurant_information">Restaurant Information</string>
+    <string name="price">Price</string>
+    <string name="kershy_order">Kershy Order</string>
+    <string name="time">Time</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="total_price">Total Price</string>
+    <string name="delivery_fee">Delivery Fee</string>
+    <string name="tax">Tax</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="nameProfile">Name :</string>
+    <string name="please_enter_restaurant_name">Please! Enter Restaurant name!</string>
+    <string name="food_name">Food Name</string>
+    <string name="description">Description</string>
+    <string name="old_price">Old Price</string>
+    <string name="new_price">New Price</string>
+    <string name="remember_me">Remember Me!</string>
+    <string name="signup"> SignUP</string>
+    <string name="login">Login</string>
+    <string name="kershy">Kershy</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="write">The order is written</string>
+    <string name="delivered">The order is delivered</string>
+    <string name="on_the_way">The order is on the way</string>
+    <string name="prepare">The order is preparing</string>
+    <string name="reset_password">Reset Password,</string>
+    <string name="enterEmail">Please Enter Your Email</string>
+    <string name="EmailSent">\"We have sent you instructions to reset your password!\"</string>
+    <string name="Failed_send_email">Failed to send reset email!</string>
+
 </resources>

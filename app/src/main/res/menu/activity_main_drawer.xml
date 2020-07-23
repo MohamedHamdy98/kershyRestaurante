@@ -2,48 +2,44 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <item android:title="Profile">
+    <item android:title="@string/profile">
         <menu>
             <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_man"
-                android:title="Restaurant Profile" />
+                android:title="@string/restaurant_profile" />
         </menu>
     </item>
-    <item android:title="Categories">
+    <item android:title="@string/categories">
         <menu>
             <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_orders"
-            android:title="Current Orders" />
+            android:title="@string/current_orders" />
             <item
                 android:id="@+id/nav_burger"
                 android:icon="@drawable/ic_burger"
-                android:title="Burger" />
+                android:title="@string/burger" />
             <item
                 android:id="@+id/nav_sweet"
                 android:icon="@drawable/ic_donut"
-                android:title="Sweet" />
+                android:title="@string/sweet" />
             <item
                 android:id="@+id/nav_drink"
                 android:icon="@drawable/ic_cola"
-                android:title="Drink" />
+                android:title="@string/drink" />
             <item
                 android:id="@+id/nav_offers"
                 android:icon="@drawable/ic_sale"
-                android:title="Offers" />
-            <item
-                android:id="@+id/nav_allOrders"
-                android:icon="@drawable/ic_orders"
-                android:title="All Orders" />
+                android:title="@string/offers" />
         </menu>
     </item>
-    <item android:title="Restaurant Information">
+    <item android:title="@string/restaurant_information">
         <menu>
             <item
                 android:id="@+id/nav_information"
                 android:icon="@drawable/ic_taxation"
-                android:title="Restaurant Information" />
+                android:title="@string/restaurant_information" />
         </menu>
     </item>
 

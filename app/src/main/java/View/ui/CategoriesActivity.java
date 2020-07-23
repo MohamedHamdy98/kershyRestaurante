@@ -52,15 +52,20 @@ public class CategoriesActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                String name = dataSnapshot.child("userName").getValue(String.class);
-                TextView userName = navigationView.getHeaderView(0).findViewById(R.id.textView_userName);
-                userName.setText(name);
-                imageView_user = navigationView.getHeaderView(0).findViewById(R.id.imageView_user);
-                if (user.getImageURL().equals("default")) {
-                    imageView_user.setImageResource(R.drawable.ic_man);
+                if (dataSnapshot.exists()){
+                    User user = dataSnapshot.getValue(User.class);
+                    String name = dataSnapshot.child("userName").getValue(String.class);
+                    TextView userName = navigationView.getHeaderView(0).findViewById(R.id.textView_userName);
+                    userName.setText(name);
+                    imageView_user = navigationView.getHeaderView(0).findViewById(R.id.imageView_user);
+                    if (user.getImageURL().equals("default")) {
+                        imageView_user.setImageResource(R.drawable.ic_man);
+                    } else {
+                        Glide.with(CategoriesActivity.this).load(user.getImageURL()).into(imageView_user);
+                    }
                 } else {
-                    Glide.with(CategoriesActivity.this).load(user.getImageURL()).into(imageView_user);
+                    Toast.makeText(CategoriesActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
+                    logOut();
                 }
             }
             @Override

@@ -36,7 +36,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|start"
                         android:layout_marginStart="10dp"
@@ -44,12 +44,13 @@
                         android:orientation="horizontal">
                         <TextView
                             android:id="@+id/textView_show_user_details"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start|center_horizontal"
                             android:focusableInTouchMode="true"
                             android:gravity="start|center"
                             android:padding="20dp"
+                            android:layoutDirection="locale"
                             android:text="User Name"
                             android:textAllCaps="false"
                             android:textColor="#fff"
