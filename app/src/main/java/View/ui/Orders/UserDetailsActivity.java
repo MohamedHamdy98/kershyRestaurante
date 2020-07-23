@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -105,13 +106,17 @@ public class UserDetailsActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                modelUserArrayList.clear();
-                for (DataSnapshot snapData : dataSnapshot.getChildren()) {
-                    User user = snapData.getValue(User.class);
-                    modelUserArrayList.add(user);
-                    myAdapterOrders = new MyAdapterOrders(modelUserArrayList, context);
-                    recyclerViewOrder.setAdapter(myAdapterOrders);
-                    prgressBar.setVisibility(View.GONE);
+                if (dataSnapshot.exists()){
+                    modelUserArrayList.clear();
+                    for (DataSnapshot snapData : dataSnapshot.getChildren()) {
+                        User user = snapData.getValue(User.class);
+                        modelUserArrayList.add(user);
+                        myAdapterOrders = new MyAdapterOrders(modelUserArrayList, context);
+                        recyclerViewOrder.setAdapter(myAdapterOrders);
+                        prgressBar.setVisibility(View.GONE);
+                    }
+                } else {
+                    // شرطة الهانتي كانتي
                 }
             }
 
@@ -130,29 +135,33 @@ public class UserDetailsActivity extends AppCompatActivity {
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                boolean writeOrder = dataSnapshot.child("writeOrder").getValue(Boolean.class);
-                boolean preparingOrder = dataSnapshot.child("preparingOrder").getValue(Boolean.class);
-                boolean wayOrder = dataSnapshot.child("wayOrder").getValue(Boolean.class);
-                boolean deliveredOrder = dataSnapshot.child("deliveredOrder").getValue(Boolean.class);
-                if (writeOrder == true) {
-                    switchWrite.setChecked(true);
+                if (dataSnapshot.exists()){
+                    boolean writeOrder = dataSnapshot.child("writeOrder").getValue(Boolean.class);
+                    boolean preparingOrder = dataSnapshot.child("preparingOrder").getValue(Boolean.class);
+                    boolean wayOrder = dataSnapshot.child("wayOrder").getValue(Boolean.class);
+                    boolean deliveredOrder = dataSnapshot.child("deliveredOrder").getValue(Boolean.class);
+                    if (writeOrder == true) {
+                        switchWrite.setChecked(true);
+                    } else {
+                        switchWrite.setChecked(false);
+                    }
+                    if (preparingOrder == true) {
+                        switchPrepare.setChecked(true);
+                    } else {
+                        switchPrepare.setChecked(false);
+                    }
+                    if (wayOrder == true) {
+                        switchOnTheWay.setChecked(true);
+                    } else {
+                        switchOnTheWay.setChecked(false);
+                    }
+                    if (deliveredOrder == true) {
+                        switchDelivery.setChecked(true);
+                    } else {
+                        switchDelivery.setChecked(false);
+                    }
                 } else {
-                    switchWrite.setChecked(false);
-                }
-                if (preparingOrder == true) {
-                    switchPrepare.setChecked(true);
-                } else {
-                    switchPrepare.setChecked(false);
-                }
-                if (wayOrder == true) {
-                    switchOnTheWay.setChecked(true);
-                } else {
-                    switchOnTheWay.setChecked(false);
-                }
-                if (deliveredOrder == true) {
-                    switchDelivery.setChecked(true);
-                } else {
-                    switchDelivery.setChecked(false);
+                    Toast.makeText(UserDetailsActivity.this, "PLease! Wait until user choose his order", Toast.LENGTH_SHORT).show();
                 }
             }
 
