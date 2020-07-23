@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2A2A32"
-    tools:context="View.ui.UserDetailsActivity">
+    tools:context="View.ui.Orders.UserDetailsActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +24,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp">
-
+                    <ProgressBar
+                        android:id="@+id/prgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="20dp"/>
                     <androidx.cardview.widget.CardView
                         android:id="@+id/below"
                         android:layout_width="match_parent"
@@ -113,6 +121,41 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center|start"
+                                        android:layout_marginStart="30dp"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:layout_weight="1"
+                                        android:text="Time"
+                                        android:textColor="#959599"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/textView_time"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="end|center"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="end"
+                                        android:paddingEnd="30dp"
+                                        android:text="Time Order"
+                                        android:textAllCaps="false"
+                                        android:textColor="#959599"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -407,6 +450,7 @@
                         </androidx.cardview.widget.CardView>
 
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView_user_delivery"
                         android:layout_width="match_parent"

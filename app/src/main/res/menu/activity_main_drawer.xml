@@ -15,7 +15,7 @@
             <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_orders"
-            android:title="Orders" />
+            android:title="Current Orders" />
             <item
                 android:id="@+id/nav_burger"
                 android:icon="@drawable/ic_burger"
@@ -32,6 +32,10 @@
                 android:id="@+id/nav_offers"
                 android:icon="@drawable/ic_sale"
                 android:title="Offers" />
+            <item
+                android:id="@+id/nav_allOrders"
+                android:icon="@drawable/ic_orders"
+                android:title="All Orders" />
         </menu>
     </item>
     <item android:title="Restaurant Information">
@@ -42,4 +46,5 @@
                 android:title="Restaurant Information" />
         </menu>
     </item>
+
 </menu>

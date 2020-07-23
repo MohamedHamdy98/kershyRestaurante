@@ -102,7 +102,7 @@ public class BurgerFragment extends Fragment {
             public void onClick(View v) {
                 setFirebase();
                 if (uploadTask != null && uploadTask.isInProgress()) {
-                    Toast.makeText(getContext(), "Uploading...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.uploading, Toast.LENGTH_SHORT).show();
                 } else {
                     uploadImage();
                 }
@@ -141,7 +141,7 @@ public class BurgerFragment extends Fragment {
 
     private void uploadImage() {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Uploading...");
+        progressDialog.setMessage(getString(R.string.uplaodingImage));
         progressDialog.show();
         if (imageUri != null) {
             final StorageReference filereference = mStorageRef.
@@ -166,13 +166,13 @@ public class BurgerFragment extends Fragment {
                             final String mUri = downloadUri.toString();
                             databaseReference = database.getReference("Menu").child("Burger")
                                     .child(editTextNameCategoryBurger.getText().toString());
-//                        databaseReference.child("M").child("Burger").push().getKey();
+
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("image_burger", mUri);
                             databaseReference.updateChildren(hashMap);
                             progressDialog.dismiss();
                         } else {
-                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.error, Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     }
@@ -185,7 +185,7 @@ public class BurgerFragment extends Fragment {
                 });
             }
         } else {
-            Toast.makeText(getContext(), "Please! Choose image!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.chooseImage, Toast.LENGTH_SHORT).show();
         }
     }
 

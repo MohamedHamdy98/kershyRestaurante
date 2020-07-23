@@ -38,6 +38,12 @@
     <fragment
         android:id="@+id/nav_information"
         android:name="View.ui.RestInformation.InforamationFragment"
-        android:label="Drink"
+        android:label="Restaurant Information"
         tools:layout="@layout/fragment_inforamation" />
+    <fragment
+        android:id="@+id/nav_allOrders"
+        android:name="View.ui.Orders.AllOrdersFragment"
+        android:label="All Orders"
+        tools:layout="@layout/fragment_all_orders" />
+
 </navigation>

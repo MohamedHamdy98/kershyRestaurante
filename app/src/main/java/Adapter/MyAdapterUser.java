@@ -5,28 +5,20 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testeverythingtwo.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 import Model.User;
-import View.ui.UserDetailsActivity;
+import View.ui.Orders.UserDetailsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -61,6 +53,7 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
                 intent.putExtra("phone", modelArrayList.get(position).getPhone());
                 intent.putExtra("address", modelArrayList.get(position).getAddressWrite());
                 intent.putExtra("totalPrice", modelArrayList.get(position).getTotalPrice());
+                intent.putExtra("timeOrder", modelArrayList.get(position).getTimeOrder());
                 intent.putExtra("totalPriceToPay", modelArrayList.get(position).getTotalPriceToPay());
                 v.getContext().startActivity(intent);
             }

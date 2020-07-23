@@ -56,19 +56,19 @@ public class SignUpActivity extends AppCompatActivity {
                 final String name = editTextSignUpName.getText().toString();
 
                 if (TextUtils.isEmpty(name)) {
-                    Snackbar.make(v, "Please Enter Your Name", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, R.string.Please_Enter_Your_Name, Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(email)) {
-                    Snackbar.make(v, "Please Enter Email", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, R.string.Please_Enter_Your_Email, Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Snackbar.make(v, "Please Enter Password", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, R.string.Please_Enter_Your_Password, Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (password.length() < 6) {
-                    Snackbar.make(v, "Password should be more thn 6 letters", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, R.string.Password_should_be_more_than_6_letters, Snackbar.LENGTH_SHORT).show();
                 }
                 prgressBarSignUp.setVisibility(View.VISIBLE);
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -85,9 +85,9 @@ public class SignUpActivity extends AppCompatActivity {
                                     String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                     databaseReference.child(userId).setValue(hashMap);
                                     startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
-                                    Snackbar.make(v, "Authentication success.", Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(v, R.string.Authentication_success, Snackbar.LENGTH_SHORT).show();
                                 } else {
-                                    Snackbar.make(v, "Authentication failed.", Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(v, R.string.Authentication_failed, Snackbar.LENGTH_SHORT).show();
                                 }
                             }
                         });

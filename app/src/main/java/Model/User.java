@@ -17,6 +17,7 @@ public class User {
     private String AddressWrite;
     private String totalPrice;
     private String TotalPriceToPay;
+    private String timeOrder;
     private boolean writeOrder;
     private boolean wayOrder;
     private boolean preparingOrder;
@@ -47,6 +48,14 @@ public class User {
         this.wayOrder = wayOrder;
         this.preparingOrder = preparingOrder;
         this.deliveredOrder = deliveredOrder;
+    }
+
+    public String getTimeOrder() {
+        return timeOrder;
+    }
+
+    public void setTimeOrder(String timeOrder) {
+        this.timeOrder = timeOrder;
     }
 
     public String getName() {

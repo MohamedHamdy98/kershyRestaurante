@@ -46,15 +46,6 @@ public class CategoriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
         databaseReference = database.getReference("RestaurantInformation").child(userId);
@@ -74,14 +65,14 @@ public class CategoriesActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(CategoriesActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CategoriesActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
             }
         });
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_profile,
                 R.id.nav_orders, R.id.nav_burger, R.id.nav_sweet,
-                R.id.nav_drink,R.id.nav_offers,R.id.nav_information)
+                R.id.nav_drink,R.id.nav_offers,R.id.nav_information,R.id.nav_allOrders)
                 .setDrawerLayout(drawer)
                 .build();
         navigationView.setItemIconTintList(null);
@@ -118,7 +109,7 @@ public class CategoriesActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
     private void logOut() {
-        Toast.makeText(CategoriesActivity.this, "LogOut", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CategoriesActivity.this, R.string.logOut, Toast.LENGTH_SHORT).show();
         SharedPreferences preferences = getSharedPreferences("keep", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("remember", "false");

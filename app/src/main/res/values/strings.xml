@@ -13,4 +13,22 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="uploading">Uploading...</string>
+    <string name="uplaodingImage">Uploading...</string>
+    <string name="chooseImage">Please! Choose image!</string>
+    <string name="error">Error</string>
+    <string name="enterRestaurantName">Please Enter Restaurant Name</string>
+    <string name="updateIsDone">Update is done</string>
+    <string name="logOut">LogOut</string>
+    <string name="pleaseLogIn">Please LogIn</string>
+    <string name="checked">Checked</string>
+    <string name="unChecked">Unchecked</string>
+    <string name="Please_Enter_Your_Email">Please Enter Your Email</string>
+    <string name="Please_Enter_Your_Password">Please Enter Your Password</string>
+    <string name="Password_should_be_more_than_6_letters">Password should be more than 6 letters</string>
+    <string name="LogIn_success">LogIn success</string>
+    <string name="LogIn_failed">LogIn Failed</string>
+    <string name="Please_Enter_Your_Name">Please Enter Your Name</string>
+    <string name="Authentication_success">Authentication success.</string>
+    <string name="Authentication_failed">Authentication Failed.</string>
 </resources>

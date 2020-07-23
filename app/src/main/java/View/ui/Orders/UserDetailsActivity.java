@@ -1,10 +1,11 @@
-package View.ui;
+package View.ui.Orders;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -71,11 +72,15 @@ public class UserDetailsActivity extends AppCompatActivity {
     Switch switchDelivery;
     @BindView(R.id.cardView_user_delivery)
     CardView cardViewUserDelivery;
+    @BindView(R.id.textView_time)
+    TextView textViewTime;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference2;
     ArrayList<User> modelUserArrayList = new ArrayList<>();
     MyAdapterOrders myAdapterOrders;
     Context context;
+    @BindView(R.id.prgressBar)
+    ProgressBar prgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +94,7 @@ public class UserDetailsActivity extends AppCompatActivity {
     }
 
     private void start_recyclerView() {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        prgressBar.setVisibility(View.VISIBLE);
         recyclerViewOrder.setHasFixedSize(true);
         recyclerViewOrder.setNestedScrollingEnabled(true);
         recyclerViewOrder.setLayoutManager(new LinearLayoutManager(this));
@@ -107,7 +110,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     modelUserArrayList.add(user);
                     myAdapterOrders = new MyAdapterOrders(modelUserArrayList, context);
                     recyclerViewOrder.setAdapter(myAdapterOrders);
-                    progressDialog.dismiss();
+                    prgressBar.setVisibility(View.GONE);
                 }
             }
 
@@ -233,6 +236,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         textViewUserPhone.setText(getIntent().getExtras().getString("phone"));
         textViewUserAddress.setText(getIntent().getExtras().getString("address"));
         textViewUserTotalPrice.setText(getIntent().getExtras().getString("totalPrice"));
+        textViewTime.setText(getIntent().getExtras().getString("timeOrder"));
         textViewTotalPriceToPay.setText(getIntent().getExtras().getString("totalPriceToPay"));
         databaseReference2 = database.getReference();
         databaseReference2.addValueEventListener(new ValueEventListener() {
@@ -251,158 +255,4 @@ public class UserDetailsActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void saveSeekBarProgress() {
-        String id = getIntent().getExtras().getString("id");
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = database.getReference("Cart")
-                .child(id).child("valueSeekBar");
-
-    }
-
-    //    public void onClickButton () {
-//        buttonWrite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                final DatabaseReference databaseReference = database.getReference("Cart")
-//                        .child(userId).child(userId);
-//                databaseReference.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        boolean writeOrder = dataSnapshot.child("writeOrder").getValue(boolean.class);
-//                        boolean progress = dataSnapshot.child("progress").getValue(boolean.class);
-//                        if (writeOrder == progress) {
-//                            textMessage.setText(R.string.Your_order_is_written);
-//                            orderImage.setImageResource(R.drawable.ic_order_180);
-//                            seekBar.setProgress(1);
-//                            valueSeekbar = seekBar.getProgress();
-//                            databaseReference.child("valueSeekBar").setValue(valueSeekbar);
-//                        } else if (writeOrder != progress) {
-//                            textMessage.setText("Please! Wait");
-//                            orderImage.setImageResource(R.drawable.ic_time_180);
-//                            seekBar.setProgress(0);
-//                            valueSeekbar = seekBar.getProgress();
-//                            databaseReference.child("valueSeekBar").setValue(valueSeekbar);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//                        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
-//        buttonPrepare.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                final DatabaseReference databaseReference = database.getReference("Cart").child(userId).child(userId);
-//                databaseReference.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        boolean preparingOrder = dataSnapshot.child("preparingOrder").getValue(Boolean.class);
-//                        boolean progress = dataSnapshot.child("progress").getValue(boolean.class);
-//                        // databaseReference.child("valueSeekBar").removeValue();
-//                        if (isAdded()) {
-//                            if (preparingOrder == progress) {
-//                                textMessage.setText(R.string.Your_order_is_preparing);
-//                                orderImage.setImageResource(R.drawable.ic_cook);
-//                                seekBar.setProgress(2);
-//                                valueSeekbar = seekBar.getProgress();
-//                                //  databaseReference.child("valueSeekBar").setValue(valueSeekbar);
-//                            } else if (preparingOrder != progress) {
-//                                textMessage.setText(R.string.Your_order_is_written);
-//                                orderImage.setImageResource(R.drawable.ic_order_180);
-//                                seekBar.setProgress(1);
-//                                valueSeekbar = seekBar.getProgress();
-//                                //  databaseReference.child("valueSeekBar").setValue(valueSeekbar);
-//                            }
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//                        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
-//        buttonWay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                final DatabaseReference databaseReference = database.getReference("Cart").child(userId).child(userId);
-//                databaseReference.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        boolean wayOrder = dataSnapshot.child("wayOrder").getValue(Boolean.class);
-//                        boolean progress = dataSnapshot.child("progress").getValue(boolean.class);
-//                        // databaseReference.child("valueSeekBar").removeValue();
-//                        if (isAdded()) {
-//                            if (wayOrder == progress) {
-//                                textMessage.setText(R.string.Your_order_is_on_the_way);
-//                                orderImage.setImageResource(R.drawable.ic_delivery_180);
-//                                seekBar.setProgress(3);
-//                                valueSeekbar = seekBar.getProgress();
-//                                // databaseReference.child("valueSeekBar").setValue(valueSeekbar);
-//                            } else if (wayOrder != progress) {
-//                                textMessage.setText(R.string.Your_order_is_preparing);
-//                                orderImage.setImageResource(R.drawable.ic_cook);
-//                                seekBar.setProgress(2);
-//                                valueSeekbar = seekBar.getProgress();
-//                                //databaseReference.child("valueSeekBar").setValue(valueSeekbar);
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//                        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
-//        buttonDelivered.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                final DatabaseReference databaseReference = database.getReference("Cart").child(userId).child(userId);
-//                databaseReference.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        boolean deliveredOrder = dataSnapshot.child("deliveredOrder").getValue(Boolean.class);
-//                        boolean progress = dataSnapshot.child("progress").getValue(boolean.class);
-//                        //  databaseReference.child("valueSeekBar").removeValue();
-//                        if (isAdded()) {
-//                            if (deliveredOrder == progress) {
-//                                textMessage.setText(R.string.Your_order_is_receiving);
-//                                orderImage.setImageResource(R.drawable.ic_receive_180);
-//                                seekBar.setProgress(4);
-//                                valueSeekbar = seekBar.getProgress();
-//                                // databaseReference.child("valueSeekBar").setValue(valueSeekbar);
-//                            } else if (deliveredOrder != progress) {
-//                                textMessage.setText(R.string.Your_order_is_on_the_way);
-//                                orderImage.setImageResource(R.drawable.ic_delivery_180);
-//                                seekBar.setProgress(3);
-//                                valueSeekbar = seekBar.getProgress();
-//                                // databaseReference.child("valueSeekBar").setValue(valueSeekbar);
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//                        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
-//    }
 }

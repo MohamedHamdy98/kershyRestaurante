@@ -56,7 +56,7 @@ public class LogInActivity extends AppCompatActivity {
         if (check.equals("true")) {
             startActivity(new Intent(LogInActivity.this, CategoriesActivity.class));
         } else if (check.equals("false")) {
-            Toast.makeText(LogInActivity.this, "Please LogIn", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LogInActivity.this, R.string.pleaseLogIn, Toast.LENGTH_SHORT).show();
         }
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -66,13 +66,13 @@ public class LogInActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("remember", "true");
                     editor.apply();
-                    Toast.makeText(LogInActivity.this, "Checked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, R.string.checked, Toast.LENGTH_SHORT).show();
                 } else if (!buttonView.isChecked()) {
                     SharedPreferences sharedPreferences = getSharedPreferences("keep", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("remember", "false");
                     editor.apply();
-                    Toast.makeText(LogInActivity.this, "Unchecked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, R.string.unChecked, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -92,15 +92,15 @@ public class LogInActivity extends AppCompatActivity {
                 final String password = editTextLoginPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Snackbar.make(v, "Please Enter Your Email", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, R.string.Please_Enter_Your_Email, Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Snackbar.make(v, "Please Enter Your Password", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, R.string.Please_Enter_Your_Password, Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (password.length() < 6) {
-                    Snackbar.make(v, "Password should be more than 6 letters", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, R.string.Password_should_be_more_than_6_letters, Snackbar.LENGTH_SHORT).show();
                 }
                 editTextLoginGmail.getText().clear();
                 editTextLoginPassword.getText().clear();
@@ -112,10 +112,10 @@ public class LogInActivity extends AppCompatActivity {
                                 prgressBarLogin.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     startActivity(new Intent(LogInActivity.this, CategoriesActivity.class));
-                                    Snackbar.make(v, "LogIn success", Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(v, R.string.LogIn_success, Snackbar.LENGTH_SHORT).show();
                                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                 } else {
-                                    Snackbar.make(v, "LogIn failed", Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(v, R.string.LogIn_failed, Snackbar.LENGTH_SHORT).show();
                                 }
                             }
                         });
