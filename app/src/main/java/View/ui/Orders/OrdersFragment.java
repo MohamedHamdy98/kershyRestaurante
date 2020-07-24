@@ -36,7 +36,7 @@ public class OrdersFragment extends Fragment {
     private MyAdapterUser myAdapterUser;
     private ArrayList<User> userArrayList;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = database.getReference("Cart");
+    private DatabaseReference databaseReference = database.getReference("branchCart");
     @BindView(R.id.prgressBar)
     ProgressBar prgressBar;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -47,16 +47,13 @@ public class OrdersFragment extends Fragment {
         // To Stop button back...
         root.setFocusableInTouchMode(true);
         root.requestFocus();
-        root.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        return true;
-                    }
+        root.setOnKeyListener((v, keyCode, event) -> {
+            if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    return true;
                 }
-                return false;
             }
+            return false;
         });
         return root;
     }

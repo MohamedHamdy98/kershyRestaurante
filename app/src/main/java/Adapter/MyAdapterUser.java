@@ -2,6 +2,7 @@ package Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testeverythingtwo.R;
@@ -23,6 +25,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder> {
+
+    int index = -1;
 
     private Context context;
 
@@ -47,8 +51,10 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                index = position;
+                notifyDataSetChanged();
                 final Intent intent = new Intent(v.getContext(), UserDetailsActivity.class);
-                intent.putExtra("id",modelArrayList.get(position).getId());
+                intent.putExtra("id", modelArrayList.get(position).getId());
                 intent.putExtra("name", modelArrayList.get(position).getUserName());
                 intent.putExtra("phone", modelArrayList.get(position).getPhone());
                 intent.putExtra("address", modelArrayList.get(position).getAddressWrite());
@@ -58,14 +64,23 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
                 v.getContext().startActivity(intent);
             }
         });
-        holder.d.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference = firebaseDatabase.getReference()
-                        .child("Cart").child(user.getId());
-                databaseReference.removeValue();
-            }
+        if (index == position) {
+            holder.textViewShowUserDetails.setTextColor(Color.parseColor("#00CB2C"));
+        } else {
+            holder.textViewShowUserDetails.setTextColor(Color.parseColor("#ffffff"));
+        }
+
+        holder.d.setOnClickListener(v -> {
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference()
+                    .child("Cart").child(user.getId());
+            databaseReference.removeValue();
+        });
+        holder.d.setOnClickListener(v -> {
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference()
+                    .child("branchCart").child(user.getId());
+            databaseReference.removeValue();
         });
     }
 
@@ -84,6 +99,8 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
         TextView textViewShowUserDetails;
         @BindView(R.id.d)
         ImageView d;
+        @BindView(R.id.card)
+        CardView card;
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

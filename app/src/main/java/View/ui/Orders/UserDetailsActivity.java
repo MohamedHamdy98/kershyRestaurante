@@ -131,7 +131,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         final DatabaseReference databaseReference2;
         // To save value is true or false...
         String id = getIntent().getExtras().getString("id");
-        databaseReference2 = data.getReference("Cart").child(id);
+        databaseReference2 = data.getReference("branchCart").child(id);
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -175,63 +175,51 @@ public class UserDetailsActivity extends AppCompatActivity {
     private void checkSeekBar() {
         FirebaseDatabase data = FirebaseDatabase.getInstance();
         String id = getIntent().getExtras().getString("id");
-        final DatabaseReference dataRef = database.getReference("Cart")
+        final DatabaseReference dataRef = database.getReference("branchCart")
                 .child(id).child("valueSeekBar");
-        final DatabaseReference databaseReference = data.getReference("Cart").child(id);
+        final DatabaseReference databaseReference = data.getReference("branchCart").child(id);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                switchWrite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                        if (isChecked) {
-                            databaseReference.child("writeOrder").setValue(true);
-                            databaseReference.child("progress").setValue(true);
-                            dataRef.setValue(1);
-                        } else {
-                            databaseReference.child("writeOrder").setValue(false);
-                            dataRef.setValue(0);
-                        }
+                switchWrite.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        databaseReference.child("writeOrder").setValue(true);
+                        databaseReference.child("progress").setValue(true);
+                        dataRef.setValue(1);
+                    } else {
+                        databaseReference.child("writeOrder").setValue(false);
+                        dataRef.setValue(0);
+                    }
 
+                });
+                switchPrepare.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        databaseReference.child("preparingOrder").setValue(true);
+                        dataRef.setValue(2);
+                    } else {
+                        databaseReference.child("preparingOrder").setValue(false);
+                        dataRef.setValue(1);
+                    }
+
+                });
+                switchOnTheWay.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        databaseReference.child("wayOrder").setValue(true);
+                        dataRef.setValue(3);
+                    } else {
+                        databaseReference.child("wayOrder").setValue(false);
+                        dataRef.setValue(2);
                     }
                 });
-                switchPrepare.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                        if (isChecked) {
-                            databaseReference.child("preparingOrder").setValue(true);
-                            dataRef.setValue(2);
-                        } else {
-                            databaseReference.child("preparingOrder").setValue(false);
-                            dataRef.setValue(1);
-                        }
+                switchDelivery.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        databaseReference.child("deliveredOrder").setValue(true);
+                        dataRef.setValue(4);
+                    } else {
+                        databaseReference.child("deliveredOrder").setValue(false);
+                        dataRef.setValue(3);
+                    }
 
-                    }
-                });
-                switchOnTheWay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                        if (isChecked) {
-                            databaseReference.child("wayOrder").setValue(true);
-                            dataRef.setValue(3);
-                        } else {
-                            databaseReference.child("wayOrder").setValue(false);
-                            dataRef.setValue(2);
-                        }
-                    }
-                });
-                switchDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                        if (isChecked) {
-                            databaseReference.child("deliveredOrder").setValue(true);
-                            dataRef.setValue(4);
-                        } else {
-                            databaseReference.child("deliveredOrder").setValue(false);
-                            dataRef.setValue(3);
-                        }
-
-                    }
                 });
             }
 
