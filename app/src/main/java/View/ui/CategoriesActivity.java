@@ -77,7 +77,7 @@ public class CategoriesActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_profile,
                 R.id.nav_orders, R.id.nav_burger, R.id.nav_sweet,
-                R.id.nav_drink,R.id.nav_offers,R.id.nav_information,R.id.nav_allOrders)
+                R.id.nav_drink,R.id.nav_offers,R.id.nav_information,R.id.nav_language)
                 .setDrawerLayout(drawer)
                 .build();
         navigationView.setItemIconTintList(null);

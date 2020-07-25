@@ -7,43 +7,43 @@
     <fragment
         android:id="@+id/nav_profile"
         android:name="View.ui.Profile.ProfileFragment"
-        android:label="Profile"
+        android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/nav_orders"
         android:name="View.ui.Orders.OrdersFragment"
-        android:label="Orders"
+        android:label="@string/kershy_order"
         tools:layout="@layout/fragment_orders" />
     <fragment
         android:id="@+id/nav_burger"
         android:name="View.ui.Burger.BurgerFragment"
-        android:label="Burger"
+        android:label="@string/burger"
         tools:layout="@layout/fragment_burger" />
     <fragment
         android:id="@+id/nav_sweet"
         android:name="View.ui.Sweet.SweetFragment"
-        android:label="Sweet"
+        android:label="@string/sweet"
         tools:layout="@layout/fragment_sweet" />
 
     <fragment
         android:id="@+id/nav_drink"
         android:name="View.ui.Drink.DrinkFragment"
-        android:label="Drink"
+        android:label="@string/drink"
         tools:layout="@layout/fragment_drink" />
     <fragment
         android:id="@+id/nav_offers"
         android:name="View.ui.Offers.OffersFragment"
-        android:label="Drink"
+        android:label="@string/offers"
         tools:layout="@layout/fragment_offers" />
     <fragment
         android:id="@+id/nav_information"
         android:name="View.ui.RestInformation.InforamationFragment"
-        android:label="Restaurant Information"
+        android:label="@string/restaurant_information"
         tools:layout="@layout/fragment_inforamation" />
     <fragment
-        android:id="@+id/nav_allOrders"
-        android:name="View.ui.Orders.AllOrdersFragment"
-        android:label="All Orders"
-        tools:layout="@layout/fragment_all_orders" />
+        android:id="@+id/nav_language"
+        android:name="View.ui.Language.LanguageFragment"
+        android:label="@string/language"
+        tools:layout="@layout/fragment_languag" />
 
 </navigation>

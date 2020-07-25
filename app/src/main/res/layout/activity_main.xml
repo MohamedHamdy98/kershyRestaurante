@@ -23,7 +23,7 @@
         android:layout_gravity="center"
         android:fontFamily="@font/bangers"
         android:gravity="center"
-        android:text="Kershy"
+        android:text="@string/kershy"
         android:textColor="#fff"
         android:textSize="80sp"
         android:textStyle="normal" />

@@ -66,5 +66,9 @@
     <string name="enterEmail">Please Enter Your Email</string>
     <string name="EmailSent">\"We have sent you instructions to reset your password!\"</string>
     <string name="Failed_send_email">Failed to send reset email!</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+    <string name="language">Language</string>
 
 </resources>

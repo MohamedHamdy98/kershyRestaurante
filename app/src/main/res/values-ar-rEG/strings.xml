@@ -67,4 +67,8 @@
     <string name="enterEmail">من فضلك أدخل البريد الإلكتروني</string>
     <string name="EmailSent">تم إرسال رمز اعادة كلمة المرور</string>
     <string name="Failed_send_email">فشل إرسال رمز اعادة كلمة المرور</string>
+    <string name="choose_language">اختر اللغة</string>
+    <string name="arabic">العربية</string>
+    <string name="english">الإنجليزية</string>
+    <string name="language">اللغة</string>
 </resources>

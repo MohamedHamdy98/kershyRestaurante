@@ -87,6 +87,7 @@ public class UserDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppThemeNoActionBar);
         setContentView(R.layout.activity_user_details);
         ButterKnife.bind(this);
         getDataUser();
