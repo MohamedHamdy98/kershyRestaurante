@@ -63,7 +63,7 @@
     <string name="delivered">تم توصيل الطلب</string>
     <string name="on_the_way">الطلب في الطريق</string>
     <string name="prepare">يتم إعداد الطلب</string>
-    <string name="reset_password">نسيت كلمة المرور, </string>
+    <string name="reset_password">هل نسيت كلمة المرور؟</string>
     <string name="enterEmail">من فضلك أدخل البريد الإلكتروني</string>
     <string name="EmailSent">تم إرسال رمز اعادة كلمة المرور</string>
     <string name="Failed_send_email">فشل إرسال رمز اعادة كلمة المرور</string>
@@ -71,4 +71,7 @@
     <string name="arabic">العربية</string>
     <string name="english">الإنجليزية</string>
     <string name="language">اللغة</string>
+    <string name="reset_pass">إعادة ÷رسال كلمة المرور</string>
+    <string name="apply">Show location of user</string>
+    <string name="iamhere">User is here</string>
 </resources>

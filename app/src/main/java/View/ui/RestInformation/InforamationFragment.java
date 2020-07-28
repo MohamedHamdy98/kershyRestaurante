@@ -1,5 +1,6 @@
 package View.ui.RestInformation;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,7 @@ public class InforamationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_inforamation, container, false);
+        View root = inflater.inflate(R.layout.fragment_information, container, false);
         ButterKnife.bind(this, root);
         onClick();
         return root;
@@ -57,5 +58,16 @@ public class InforamationFragment extends Fragment {
                 Snackbar.make(v,"Success",Snackbar.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }
 }

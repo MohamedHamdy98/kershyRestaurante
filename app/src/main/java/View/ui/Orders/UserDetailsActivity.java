@@ -1,7 +1,9 @@
 package View.ui.Orders;
 
 import android.content.Context;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -17,6 +19,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testeverythingtwo.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,8 +40,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class UserDetailsActivity extends AppCompatActivity {
-
+public class UserDetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
+    private GoogleMap mMap;
     @BindView(R.id.recyclerView_order)
     RecyclerView recyclerViewOrder;
     @BindView(R.id.below)
@@ -41,8 +50,7 @@ public class UserDetailsActivity extends AppCompatActivity {
     TextView textViewUserName;
     @BindView(R.id.textView_userPhone)
     TextView textViewUserPhone;
-    @BindView(R.id
-            .textView_userAddress)
+    @BindView(R.id.textView_userAddress)
     TextView textViewUserAddress;
     @BindView(R.id.textView_userTotalPrice)
     TextView textViewUserTotalPrice;
@@ -90,6 +98,10 @@ public class UserDetailsActivity extends AppCompatActivity {
         setTheme(R.style.AppThemeNoActionBar);
         setContentView(R.layout.activity_user_details);
         ButterKnife.bind(this);
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         getDataUser();
         start_recyclerView();
         checkSeekBar();
@@ -103,21 +115,19 @@ public class UserDetailsActivity extends AppCompatActivity {
         recyclerViewOrder.setLayoutManager(new LinearLayoutManager(this));
         FirebaseDatabase fireData = FirebaseDatabase.getInstance();
         String id = getIntent().getExtras().getString("id");
-        DatabaseReference databaseReference = fireData.getReference("Cart").child(id).child("Order");
+        DatabaseReference databaseReference = fireData.getReference("branchOrder").child(id).child("Order");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     modelUserArrayList.clear();
-                    for (DataSnapshot snapData : dataSnapshot.getChildren()) {
-                        User user = snapData.getValue(User.class);
-                        modelUserArrayList.add(user);
-                        myAdapterOrders = new MyAdapterOrders(modelUserArrayList, context);
-                        recyclerViewOrder.setAdapter(myAdapterOrders);
-                        prgressBar.setVisibility(View.GONE);
-                    }
+                    User user = dataSnapshot.getValue(User.class);
+                    modelUserArrayList.add(user);
+                    myAdapterOrders = new MyAdapterOrders(modelUserArrayList, context);
+                    recyclerViewOrder.setAdapter(myAdapterOrders);
+                    prgressBar.setVisibility(View.GONE);
                 } else {
-                    // شرطة الهانتي كانتي
+                    // error الهانتي كانتي
                 }
             }
 
@@ -136,7 +146,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     boolean writeOrder = dataSnapshot.child("writeOrder").getValue(Boolean.class);
                     boolean preparingOrder = dataSnapshot.child("preparingOrder").getValue(Boolean.class);
                     boolean wayOrder = dataSnapshot.child("wayOrder").getValue(Boolean.class);
@@ -251,6 +261,36 @@ public class UserDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        FirebaseDatabase data = FirebaseDatabase.getInstance();
+        final DatabaseReference databaseReference;
+        String id = getIntent().getExtras().getString("id");
+        databaseReference = data.getReference("branchCart").child(id);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                double latitude = dataSnapshot.child("Latitude").getValue(double.class);
+                double longitude = dataSnapshot.child("Longitude").getValue(double.class);
+                LatLng latLng = new LatLng(latitude, longitude);
+                MarkerOptions markerOptions = new MarkerOptions().position(latLng)
+                        .title(getString(R.string.iamhere));
+                mMap = googleMap;
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//                googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(UserDetailsActivity.this,
+//                        R.raw.map_style));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                googleMap.addMarker(markerOptions);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }

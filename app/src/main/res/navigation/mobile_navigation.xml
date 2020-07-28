@@ -39,11 +39,11 @@
         android:id="@+id/nav_information"
         android:name="View.ui.RestInformation.InforamationFragment"
         android:label="@string/restaurant_information"
-        tools:layout="@layout/fragment_inforamation" />
+        tools:layout="@layout/fragment_information" />
     <fragment
         android:id="@+id/nav_language"
         android:name="View.ui.Language.LanguageFragment"
         android:label="@string/language"
-        tools:layout="@layout/fragment_languag" />
+        tools:layout="@layout/fragment_language" />
 
 </navigation>

@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.testeverythingtwo">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -26,15 +31,42 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name="View.ui.ResetPasswordActivity"></activity>
-        <activity android:name="View.ui.Orders.UserDetailsActivity" />
-        <activity android:name="View.ui.LogInActivity" />
-        <activity android:name="View.ui.SignUpActivity" />
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name="View.ui.Orders.MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
+        <activity
+            android:name="View.ui.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="View.ui.Orders.UserDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="View.ui.LogInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="View.ui.SignUpActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="View.ui.CategoriesActivity"
             android:label="@string/title_activity_categories"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="View.ui.MainActivity">
+        <activity
+            android:name="View.ui.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

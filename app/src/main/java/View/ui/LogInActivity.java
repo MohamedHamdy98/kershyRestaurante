@@ -48,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppThemeNoActionBar);
+        setTheme(R.style.AppThemeEdit);
         setContentView(R.layout.activity_log_in);
         ButterKnife.bind(this);
         SharedPreferences preferences = getSharedPreferences("keep", MODE_PRIVATE);
@@ -65,13 +65,11 @@ public class LogInActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("remember", "true");
                     editor.apply();
-                    Toast.makeText(LogInActivity.this, R.string.checked, Toast.LENGTH_SHORT).show();
                 } else if (!buttonView.isChecked()) {
                     SharedPreferences sharedPreferences = getSharedPreferences("keep", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("remember", "false");
                     editor.apply();
-                    Toast.makeText(LogInActivity.this, R.string.unChecked, Toast.LENGTH_SHORT).show();
                 }
             }
         });

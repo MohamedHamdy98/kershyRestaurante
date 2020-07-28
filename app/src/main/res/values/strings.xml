@@ -62,7 +62,7 @@
     <string name="delivered">The order is delivered</string>
     <string name="on_the_way">The order is on the way</string>
     <string name="prepare">The order is preparing</string>
-    <string name="reset_password">Reset Password,</string>
+    <string name="reset_password">FORGOT PASSWORD?</string>
     <string name="enterEmail">Please Enter Your Email</string>
     <string name="EmailSent">\"We have sent you instructions to reset your password!\"</string>
     <string name="Failed_send_email">Failed to send reset email!</string>
@@ -70,5 +70,9 @@
     <string name="arabic">Arabic</string>
     <string name="english">English</string>
     <string name="language">Language</string>
+    <string name="reset_pass">Reset Password</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="apply">Show location of user</string>
+    <string name="iamhere">User is here</string>
 
 </resources>

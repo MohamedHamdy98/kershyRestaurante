@@ -3,6 +3,7 @@ package View.ui.Offers;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -68,6 +69,17 @@ public class OffersFragment extends Fragment {
         ButterKnife.bind(this, root);
         onClick();
         return root;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }
     private void setFirebase() {
         String name = editTextNameCategoryOffer.getText().toString();
