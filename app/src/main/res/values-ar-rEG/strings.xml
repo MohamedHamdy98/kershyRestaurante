@@ -72,6 +72,5 @@
     <string name="english">الإنجليزية</string>
     <string name="language">اللغة</string>
     <string name="reset_pass">إعادة ÷رسال كلمة المرور</string>
-    <string name="apply">Show location of user</string>
-    <string name="iamhere">User is here</string>
+    <string name="isHere">هنا</string>
 </resources>

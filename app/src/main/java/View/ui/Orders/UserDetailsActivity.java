@@ -276,9 +276,10 @@ public class UserDetailsActivity extends AppCompatActivity implements OnMapReady
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 double latitude = dataSnapshot.child("Latitude").getValue(double.class);
                 double longitude = dataSnapshot.child("Longitude").getValue(double.class);
+                String Username =  getIntent().getExtras().getString("name");
                 LatLng latLng = new LatLng(latitude, longitude);
                 MarkerOptions markerOptions = new MarkerOptions().position(latLng)
-                        .title(getString(R.string.iamhere));
+                        .title(Username+" "+getString(R.string.isHere));
                 mMap = googleMap;
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 //                googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(UserDetailsActivity.this,

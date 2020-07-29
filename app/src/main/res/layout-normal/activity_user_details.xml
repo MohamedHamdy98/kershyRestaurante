@@ -640,7 +640,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="225dp"
+                        android:layout_height="260dp"
                         android:layout_below="@id/cardView_user_delivery"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
@@ -650,7 +650,7 @@
                         app:cardElevation="12dp">
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="220dp"
+                        android:layout_height="255dp"
                         android:layout_margin="3dp"
                         android:elevation="12dp"
                         app:cardBackgroundColor="#19191B"

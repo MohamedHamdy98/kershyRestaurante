@@ -71,8 +71,6 @@
     <string name="english">English</string>
     <string name="language">Language</string>
     <string name="reset_pass">Reset Password</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="apply">Show location of user</string>
-    <string name="iamhere">User is here</string>
+    <string name="isHere">is here</string>
 
 </resources>
