@@ -115,17 +115,20 @@ public class UserDetailsActivity extends AppCompatActivity implements OnMapReady
         recyclerViewOrder.setLayoutManager(new LinearLayoutManager(this));
         FirebaseDatabase fireData = FirebaseDatabase.getInstance();
         String id = getIntent().getExtras().getString("id");
-        DatabaseReference databaseReference = fireData.getReference("branchOrder").child(id).child("Order");
+        DatabaseReference databaseReference = fireData.getReference("branchOrder").child(id)
+                .child("Order");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     modelUserArrayList.clear();
-                    User user = dataSnapshot.getValue(User.class);
-                    modelUserArrayList.add(user);
-                    myAdapterOrders = new MyAdapterOrders(modelUserArrayList, context);
-                    recyclerViewOrder.setAdapter(myAdapterOrders);
-                    prgressBar.setVisibility(View.GONE);
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        User user = snapshot.getValue(User.class);
+                        modelUserArrayList.add(user);
+                        myAdapterOrders = new MyAdapterOrders(modelUserArrayList, context);
+                        recyclerViewOrder.setAdapter(myAdapterOrders);
+                        prgressBar.setVisibility(View.GONE);
+                    }
                 } else {
                     // error الهانتي كانتي
                 }
@@ -230,8 +233,11 @@ public class UserDetailsActivity extends AppCompatActivity implements OnMapReady
                         databaseReference.child("deliveredOrder").setValue(false);
                         dataRef.setValue(3);
                     }
-
                 });
+                if ((!switchWrite.isChecked()) && (!switchPrepare.isChecked()) &&
+                        (!switchOnTheWay.isChecked()) && (!switchDelivery.isChecked())){
+                    dataRef.setValue(0);
+                }
             }
 
             @Override
