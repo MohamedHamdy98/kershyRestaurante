@@ -67,7 +67,6 @@ public class OrdersFragment extends Fragment {
         recyclerViewOrders.setItemAnimator(new DefaultItemAnimator());
         recyclerViewOrders.setLayoutManager(new LinearLayoutManager(getActivity()));
         databaseReference.push().getKey();
-        databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

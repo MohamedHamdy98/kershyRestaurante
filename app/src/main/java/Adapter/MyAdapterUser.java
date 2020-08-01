@@ -69,13 +69,12 @@ public class MyAdapterUser extends RecyclerView.Adapter<MyAdapterUser.ViewHolder
         } else {
             holder.textViewShowUserDetails.setTextColor(Color.parseColor("#ffffff"));
         }
-
-        holder.d.setOnClickListener(v -> {
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference()
-                    .child("Cart").child(user.getId());
-            databaseReference.removeValue();
-        });
+//        holder.d.setOnClickListener(v -> {
+//            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+//            DatabaseReference databaseReference = firebaseDatabase.getReference()
+//                    .child("Cart").child(user.getId());
+//            databaseReference.removeValue();
+//        });
         holder.d.setOnClickListener(v -> {
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference()
