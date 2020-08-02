@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2A2A32"
-    tools:context="View.ui.Orders.UserDetailsActivity">
+    tools:context="com.MH.kershyRestaurantApp.View.ui.Orders.UserDetailsActivity">
 
     <ScrollView
         android:layout_width="match_parent"

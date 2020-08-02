@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash"
     android:orientation="vertical"
-    tools:context="View.ui.SignUpActivity">
+    tools:context="com.MH.kershyRestaurantApp.View.ui.SignUpActivity">
 
     <TextView
         android:layout_width="match_parent"

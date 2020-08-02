@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.testeverythingtwo">
+    package="com.MH.kershyRestaurantApp">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -29,7 +29,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="DataOffline.GlobalApp"
+        android:name="com.MH.kershyRestaurantApp.DataOffline.GlobalApp"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
 
@@ -46,24 +46,24 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="View.ui.ResetPasswordActivity"
+            android:name="com.MH.kershyRestaurantApp.View.ui.ResetPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="View.ui.Orders.UserDetailsActivity"
+            android:name="com.MH.kershyRestaurantApp.View.ui.Orders.UserDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="View.ui.LogInActivity"
+            android:name="com.MH.kershyRestaurantApp.View.ui.LogInActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="View.ui.SignUpActivity"
+            android:name="com.MH.kershyRestaurantApp.View.ui.SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="View.ui.CategoriesActivity"
+            android:name="com.MH.kershyRestaurantApp.View.ui.CategoriesActivity"
             android:label="@string/title_activity_categories"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="View.ui.MainActivity"
+            android:name="com.MH.kershyRestaurantApp.View.ui.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/splash"
     android:layout_height="match_parent"
-    tools:context="View.ui.MainActivity">
+    tools:context="com.MH.kershyRestaurantApp.View.ui.MainActivity">
     <ImageView
         android:id="@+id/imageSplash"
         android:layout_width="match_parent"

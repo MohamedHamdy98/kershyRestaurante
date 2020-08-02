@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="View.ui.RestInformation.InforamationFragment">
+    tools:context="com.MH.kershyRestaurantApp.View.ui.RestInformation.InforamationFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
